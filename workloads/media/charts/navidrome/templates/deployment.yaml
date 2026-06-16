@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: navidrome
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: navidrome
+  template:
+    metadata:
+      labels:
+        app: navidrome
+      annotations:
+        pre.hook.backup.velero.io/container: navidrome
+        pre.hook.backup.velero.io/command: '["/bin/sh", "-c", "kill -STOP $(pidof navidrome || echo 1)"]'
+        post.hook.backup.velero.io/container: navidrome
+        post.hook.backup.velero.io/command: '["/bin/sh", "-c", "kill -CONT $(pidof navidrome || echo 1)"]'
+    spec:
+      securityContext:
+        runAsUser: {{ .Values.global.securityContext.runAsUser }}
+        runAsGroup: {{ .Values.global.securityContext.runAsGroup }}
+      containers:
+        - name: navidrome
+          image: deluan/navidrome:{{ .Values.imageTag }}
+          ports:
+            - containerPort: {{ .Values.port }}
+          volumeMounts:
+            # 1. State/Database folder remains safe on high-speed Longhorn block storage
+            - name: data
+              mountPath: /data
+            # 2. Media library mounted directly via SMB
+            - name: music
+              mountPath: /music
+              # Targets the specific music folder inside your root /backup share
+              subPath: media/music 
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: navidrome-data-pvc
+        # The hostPath is replaced with the direct CSI configuration
+        - name: music
+          csi:
+            driver: smb.csi.k8s.io
+            volumeAttributes:
+              source: "//u543033.your-storagebox.de/backup"
+            nodeStageSecretRef:
+              name: hetzner-smb-creds
+              namespace: kube-system

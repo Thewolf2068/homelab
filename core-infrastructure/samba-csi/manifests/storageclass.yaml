@@ -11,5 +11,5 @@ mountOptions:
   - dir_mode=0777
   - file_mode=0777
   - vers=3.0
-reclaimPolicy: Delete
+reclaimPolicy: Retain
 allowVolumeExpansion: true

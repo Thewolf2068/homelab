@@ -1,0 +1,11 @@
+global:
+  domain: "miquella.dev"
+  securityContext:
+    runAsUser: 1000
+    runAsGroup: 1000
+
+navidrome:
+  enabled: true
+  imageTag: "0.61.2"
+  port: "8080"
+  subdomain: "navidrome"
