@@ -1,0 +1,43 @@
+configuration:
+  defaultVolumesToFsBackup: true
+  backupStorageLocation:
+    - name: default
+      provider: velero.io/aws
+      bucket: k3s-backups
+      config:
+        region: auto
+        s3ForcePathStyle: true
+        s3Url: https://ba7af738ac3fcf781135c6b598a7f096.r2.cloudflarestorage.com
+  volumeSnapshotLocation: []
+
+
+initContainers:
+  - name: velero-plugin-for-aws
+    image: velero/velero-plugin-for-aws:v1.11.1
+    volumeMounts:
+      - mountPath: /target
+        name: plugins
+
+
+deployNodeAgent: true
+
+nodeAgent:
+  containerSecurityContext:
+    privileged: true
+
+credentials:
+  useSecret: true
+  existingSecret: velero-s3-credentials
+
+upgradeCRDs: false
+kubectl:
+  image:
+    repository: bitnami/kubectl
+    tag: latest
+
+
+schedules:
+  velero-daily-backup:
+    schedule: "0 3 * * *"
+    template:
+      ttl: "720h"
