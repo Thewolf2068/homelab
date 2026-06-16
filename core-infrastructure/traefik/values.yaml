@@ -27,7 +27,7 @@ additionalArguments:
   - "--certificatesresolvers.cloudflare.acme.storage=/data/acme.json"
 
 persistence:
-  enabled: true # Temporary
+  enabled: false # Temporary
   name: traefik-acme-storage
   path: /data
   size: 1Gi
