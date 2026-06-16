@@ -4,7 +4,7 @@ metadata:
   name: traefik
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "0" # Starts before everything else
+    argocd.argoproj.io/sync-wave: "0"
 spec:
   project: default
   sources:

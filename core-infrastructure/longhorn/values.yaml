@@ -1,0 +1,17 @@
+persistence:
+  defaultClass: true
+  defaultClassReplicaCount: 3
+  reclaimPolicy: Delete
+
+image:
+  repository: longhornio/longhorn-manager
+  tag: v1.12.0
+
+csi:
+  kubeletRootDir: /var/lib/kubelet
+
+defaultSettings:
+  defaultReplicaCount: 3
+  storageMinimalAvailablePercentage: 10
+  guaranteedEngineManagerCPU: 5
+  guaranteedReplicaManagerCPU: 5
