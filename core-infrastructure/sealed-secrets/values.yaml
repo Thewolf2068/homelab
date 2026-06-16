@@ -1,0 +1,11 @@
+fullnameOverride: sealed-secrets-controller
+
+resources:
+  requests:
+    memory: 128Mi
+    cpu: 50m
+    limits:
+      memory: 256Mi
+      cpu: 100m
+      # Key renewal interval (default 30 days)
+    keyrenewperiod: "720h"
