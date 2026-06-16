@@ -18,7 +18,7 @@ spec:
 
     # Source 2: Your Local Raw Manifests (SealedSecret + IngressRoute)
     - repourl: 'https://github.com/Thewolf2068/homelab.git' # <-- update this
-      targetrevision: head
+      targetrevision: HEAD
       path: core-infrastructure/traefik/manifests
       ref: repo
   destination:
