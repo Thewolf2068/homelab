@@ -33,7 +33,7 @@ upgradeCRDs: false
 kubectl:
   image:
     repository: bitnami/kubectl
-    tag: latest
+    tag: "latest"
 
 
 schedules:
