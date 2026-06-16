@@ -3,7 +3,7 @@ configuration:
   backupStorageLocation:
     - name: default
       provider: velero.io/aws
-      bucket: homelab-backups
+      bucket: homelab-backup
       config:
         region: auto
         s3ForcePathStyle: true
