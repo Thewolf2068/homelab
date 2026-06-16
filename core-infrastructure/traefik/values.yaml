@@ -1,5 +1,5 @@
 deployment:
-  kind: DaemonSet
+  replicas: 1
 
 ports:
   web:
