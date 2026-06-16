@@ -6,7 +6,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "-10"
 spec:
-  project: infrastructure
+  project: default
   source:
     repoURL: https://github.com/Thewolf2068/homelab
     path: core-infrastructure/traefik/crd
