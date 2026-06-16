@@ -41,4 +41,5 @@ persistence:
 
 providers:
   kubernetesCRD:
+    enabled: true
     allowCrossNamespace: true

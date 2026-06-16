@@ -3,10 +3,12 @@ kind: Application
 metadata:
   name: sealed-secrets
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
 spec:
   project: default
   source:
-    repoURL: 'https://bitnami-labs.github.io/sealed-secrets'
+    repoURL: 'oci://registry-1.docker.io/bitnamicharts'
     chart: sealed-secrets
     targetRevision: 2.18.5 # Use the latest stable chart version
     helm:
