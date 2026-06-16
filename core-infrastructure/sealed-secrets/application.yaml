@@ -45,10 +45,6 @@ spec:
             cpu: 100m
         # Key renewal interval (default 30 days)
         keyrenewperiod: "720h"
-        # Metrics for monitoring
-        metrics:
-          serviceMonitor:
-            enabled: true
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system
