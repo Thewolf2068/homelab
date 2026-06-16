@@ -26,24 +26,16 @@ spec:
           ports:
             - containerPort: {{ .Values.port }}
           volumeMounts:
-            # 1. State/Database folder remains safe on high-speed Longhorn block storage
             - name: data
               mountPath: /data
-            # 2. Media library mounted directly via SMB
             - name: music
               mountPath: /music
-              # Targets the specific music folder inside your root /backup share
-              subPath: media/music 
+              subPath: media/music # Isolates Navidrome strictly to your music directory
       volumes:
         - name: data
           persistentVolumeClaim:
             claimName: navidrome-data-pvc
-        # The hostPath is replaced with the direct CSI configuration
+        # Point this directly to the cluster-bound PVC proxy
         - name: music
-          csi:
-            driver: smb.csi.k8s.io
-            volumeAttributes:
-              source: "//u543033.your-storagebox.de/backup"
-            nodeStageSecretRef:
-              name: hetzner-smb-creds
-              namespace: kube-system
+          persistentVolumeClaim:
+            claimName: hetzner-smb-shared-pvc

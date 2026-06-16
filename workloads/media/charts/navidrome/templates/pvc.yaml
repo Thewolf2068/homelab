@@ -9,3 +9,17 @@ spec:
   resources:
     requests:
       storage: 5Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: hetzner-smb-shared-pvc
+  namespace: media # Change this to match your application's namespace
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: hetzner-smb
+  volumeName: hetzner-smb-global-pv # Binds explicitly to your static cluster PV
+  resources:
+    requests:
+      storage: 1Ti
