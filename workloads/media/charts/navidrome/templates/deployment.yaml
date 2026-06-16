@@ -20,6 +20,7 @@ spec:
       securityContext:
         runAsUser: {{ .Values.global.securityContext.runAsUser }}
         runAsGroup: {{ .Values.global.securityContext.runAsGroup }}
+        fsGroup: {{ .Values.global.securityContext.runAsGroup }}
       containers:
         - name: navidrome
           image: deluan/navidrome:{{ .Values.imageTag }}
