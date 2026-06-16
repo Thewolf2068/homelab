@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'git@github.com:Thewolf2068/homelab.git' # <-- Update this to your repo URL
+    repoURL: 'git@github.com:Thewolf2068/homelab.git'
     targetRevision: HEAD
     path: argocd-apps
     directory:
@@ -18,3 +18,5 @@ spec:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
