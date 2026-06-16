@@ -6,7 +6,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host('{{ .Values.subdomain }}.miquella.dev')
+    - match: Host(`{{ .Values.subdomain }}.miquella.dev`)
       kind: Rule
       services:
         - name: navidrome
