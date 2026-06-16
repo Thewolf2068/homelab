@@ -30,10 +30,10 @@ credentials:
   existingSecret: velero-s3-credentials
 
 upgradeCRDs: false
-kubectl:
-  image:
-    repository: alpine/kubectl
-    tag: "latest"
+# kubectl:
+#   image:
+#     repository: alpine/kubectl
+#     tag: "latest"
 
 
 schedules:
