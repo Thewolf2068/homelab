@@ -1,15 +1,5 @@
 deployment:
-  replicas: 3
-  # Ensures exactly one Traefik pod lands on each of your 3 workers
-  podAntiAffinity:
-    requiredDuringSchedulingIgnoredDuringExecution:
-      - labelSelector:
-          matchExpressions:
-            - key: app.kubernetes.io/name
-              operator: In
-              values:
-                - traefik
-        topologyKey: kubernetes.io/hostname
+  kind: DaemonSet
 
 ports:
   web:
