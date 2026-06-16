@@ -11,6 +11,8 @@ ports:
     tls:
       enabled: true
 
+service:
+  type: ClusterIP
 # Injects the Cloudflare API token into Traefik's environment
 envFrom:
   - secretRef:
