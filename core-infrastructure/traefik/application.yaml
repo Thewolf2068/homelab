@@ -1,0 +1,29 @@
+# core-infrastructure/traefik/application.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: traefik
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    # Source 1: The Upstream Helm Chart
+    - repoURL: 'https://helm.traefik.io/traefik'
+      chart: traefik
+      targetRevision: 26.0.0
+      helm:
+        valueFiles:
+          - $repo/core-infrastructure/traefik/values.yaml
+
+    # Source 2: Your Local Raw Manifests (SealedSecret + IngressRoute)
+    - repoURL: 'git@github.com:Thewolf2068/homelab.git' # <-- Update this
+      targetRevision: HEAD
+      path: core-infrastructure/traefik/manifests
+      ref: repo
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: kube-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

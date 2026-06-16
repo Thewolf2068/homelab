@@ -1,0 +1,44 @@
+deployment:
+  replicas: 3
+  # Ensures exactly one Traefik pod lands on each of your 3 workers
+  podAntiAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+            - key: app.kubernetes.io/name
+              operator: In
+              values:
+                - traefik
+        topologyKey: kubernetes.io/hostname
+
+ports:
+  web:
+    hostPort: 80
+    redirectTo:
+      port: websecure
+  websecure:
+    hostPort: 443
+    tls:
+      enabled: true
+
+# Injects the Cloudflare API token into Traefik's environment
+envFrom:
+  - secretRef:
+      name: cloudflare-api-token
+
+additionalArguments:
+  - "--certificatesresolvers.cloudflare.acme.dnschallenge=true"
+  - "--certificatesresolvers.cloudflare.acme.dnschallenge.provider=cloudflare"
+  - "--certificatesresolvers.cloudflare.acme.email=malenia@miquella.dev"
+  - "--certificatesresolvers.cloudflare.acme.storage=/data/acme.json"
+
+persistence:
+  enabled: true
+  name: traefik-acme-storage
+  path: /data
+  size: 1Gi
+  accessMode: ReadWriteOnce
+
+providers:
+  kubernetesCRD:
+    allowCrossNamespace: true
