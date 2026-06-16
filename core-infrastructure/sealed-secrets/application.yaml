@@ -8,7 +8,7 @@ metadata:
 spec:
   source:
     repoURL: https://github.com/Thewolf2068/homelab
-    path: core-infrastructure/traefik/crds
+    path: core-infrastructure/sealed-secrets/crd
     targetRevision: main
   destination:
     server: https://kubernetes.default.svc
@@ -57,4 +57,3 @@ spec:
       prune: true
     syncOptions:
       - CreateNamespace=true
-      - Replace=true
