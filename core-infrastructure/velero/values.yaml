@@ -32,7 +32,7 @@ credentials:
 upgradeCRDs: false
 kubectl:
   image:
-    repository: bitnami/kubectl
+    repository: alpine/kubectl
     tag: "latest"
 
 
