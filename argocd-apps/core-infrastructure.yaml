@@ -6,12 +6,16 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  source:
-    repoURL: 'https://github.com/Thewolf2068/homelab.git'
-    targetRevision: HEAD
-    path: core-infrastructure
-    directory:
-      recurse: true 
+  sources:
+    - repoURL: 'https://github.com/Thewolf2068/homelab.git'
+      targetRevision: HEAD
+      path: core-infrastructure/traefik
+
+    - repoURL: 'https://github.com/Thewolf2068/homelab.git'
+      targetRevision: HEAD
+      path: core-infrastructure/sealed-secrets
+
+
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: argocd
