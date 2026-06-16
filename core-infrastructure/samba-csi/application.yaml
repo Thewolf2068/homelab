@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: csi-samba-controller
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"  # Deploy early
+spec:
+  project: default
+  sources: 
+    - repoURL: https://raw.githubusercontent.com/kubernetes-csi/csi-driver-smb/master/charts
+      chart: csi-driver-smb
+      targetRevision: 1.20.1
+
+    - repoURL: 'https://github.com/Thewolf2068/homelab.git' # <-- update this
+      targetRevision: HEAD
+      path: core-infrastructure/samba-csi/manifests
+      ref: repo
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kube-system
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+    syncOptions:
+      - CreateNamespace=true
