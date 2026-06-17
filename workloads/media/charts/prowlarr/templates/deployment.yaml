@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prowlarr
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: prowlarr
+  template:
+    metadata:
+      labels:
+        app: prowlarr
+      annotations:
+        pre.hook.backup.velero.io/container: prowlarr
+        pre.hook.backup.velero.io/command: '["/bin/sh", "-c", "kill -STOP $(pidof Prowlarr || echo 1)"]'
+        post.hook.backup.velero.io/container: prowlarr
+        post.hook.backup.velero.io/command: '["/bin/sh", "-c", "kill -CONT $(pidof Prowlarr || echo 1)"]'
+    spec:
+      securityContext:
+        runAsUser: {{ .Values.global.securityContext.runAsUser }}
+        runAsGroup: {{ .Values.global.securityContext.runAsGroup }}
+        fsGroup: 65534
+        fsGroupChangePolicy: OnRootMismatch
+      containers:
+        - name: prowlarr
+          image: ghcr.io/home-operations/prowlarr:{{ .Values.prowlarr.imageTag }}@{{ .Values.prowlarr.imageDigest }}
+          ports:
+            - containerPort: {{ .Values.prowlarr.port }}
+          env:
+            - name: TZ
+              value: "UTC"
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: true
+          volumeMounts:
+            - name: config
+              mountPath: /config
+            - name: media
+              mountPath: /media
+              subPath: media
+              readOnly: false
+            - name: tmp
+              mountPath: /tmp
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: prowlarr-config-pvc
+        - name: media
+          persistentVolumeClaim:
+            claimName: pvc-media-smb
+        - name: tmp
+          emptyDir: {}

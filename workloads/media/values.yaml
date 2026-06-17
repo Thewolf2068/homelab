@@ -9,3 +9,10 @@ navidrome:
   imageTag: "0.61.2"
   port: "4533"
   subdomain: "navidrome"
+
+prowlarr:
+  enabled: true
+  imageTag: "2.4.0.5397"
+  imageDigest: "sha256:6fdfd467c60cc00210121ac2ecf663a310eaec834429d75a190e98be645574ef"
+  port: "9696"
+  subdomain: "prowlarr"
