@@ -12,8 +12,8 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: smb
   mountOptions:
-    - dir_mode: 0777
-    - file_mode: 0777
+    - dir_mode=0777
+    - file_mode=0777
   csi:
     driver: smb.csi.k8s.io
     readOnly: false
