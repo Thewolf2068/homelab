@@ -33,11 +33,7 @@ spec:
               mountPath: /data
             - name: music
               mountPath: /music
-              subPath: media/music # Isolates Navidrome strictly to your music directory
-              readOnly: false
-            - name: music #Temporary
-              mountPath: /test
-              subPath: media
+              subPath: media/music/Library
               readOnly: false
       
       volumes:
@@ -46,4 +42,4 @@ spec:
             claimName: navidrome-data-pvc
         - name: music
           persistentVolumeClaim:
-            claimName: pvc-media-smb
+            claimName: pvc-navidrome-smb

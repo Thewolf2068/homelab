@@ -53,6 +53,6 @@ spec:
             claimName: prowlarr-config-pvc
         - name: media
           persistentVolumeClaim:
-            claimName: pvc-media-smb
+            claimName: pvc-prowlarr-smb
         - name: tmp
           emptyDir: {}
