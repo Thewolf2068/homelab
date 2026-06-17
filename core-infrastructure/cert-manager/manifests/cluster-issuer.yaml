@@ -7,7 +7,7 @@ spec:
     email: malenia@miquella.dev
     server: https://acme-staging-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
-      name: letsencrypt- loudflare-account-key
+      name: letsencrypt-cloudflare-account-key
     solvers:
     - dns01:
         cloudflare:
