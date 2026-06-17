@@ -6,9 +6,9 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`{{ .Values.prowlarr.subdomain }}.miquella.dev`)
+    - match: Host(`{{ .Values.subdomain }}.miquella.dev`)
       kind: Rule
       services:
         - name: prowlarr
-          port: {{ .Values.prowlarr.port }}
+          port: {{ .Values.port }}
   tls: {}

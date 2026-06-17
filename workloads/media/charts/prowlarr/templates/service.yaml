@@ -7,5 +7,5 @@ spec:
   selector:
     app: prowlarr
   ports:
-    - port: {{ .Values.prowlarr.port }}
-      targetPort: {{ .Values.prowlarr.port }}
+    - port: {{ .Values.port }}
+      targetPort: {{ .Values.port }}

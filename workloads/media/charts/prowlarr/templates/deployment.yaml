@@ -26,9 +26,9 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
       containers:
         - name: prowlarr
-          image: ghcr.io/home-operations/prowlarr:{{ .Values.prowlarr.imageTag }}@{{ .Values.prowlarr.imageDigest }}
+          image: ghcr.io/home-operations/prowlarr:{{ .Values.imageTag }}@{{ .Values.imageDigest }}
           ports:
-            - containerPort: {{ .Values.prowlarr.port }}
+            - containerPort: {{ .Values.port }}
           env:
             - name: TZ
               value: "UTC"
