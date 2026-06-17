@@ -35,6 +35,11 @@ spec:
               mountPath: /music
               subPath: media/music # Isolates Navidrome strictly to your music directory
               readOnly: false
+            - name: music #Temporary
+              mountPath: /test
+              subPath: media
+              readOnly: false
+      
       volumes:
         - name: data
           persistentVolumeClaim:
