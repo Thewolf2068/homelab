@@ -35,6 +35,10 @@ spec:
               mountPath: /music
               subPath: media/music/Library
               readOnly: false
+            - name: music
+              mountPath: /testing
+              subPath: media
+              readOnly: false
       
       volumes:
         - name: data
