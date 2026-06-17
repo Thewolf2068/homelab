@@ -7,5 +7,5 @@ global:
 navidrome:
   enabled: true
   imageTag: "0.61.2"
-  port: "8080"
+  port: "4533"
   subdomain: "navidrome"
