@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: navidrome
+  name: {{ .Chart.Name }}
 spec:
   type: ClusterIP
   selector:
-    app: navidrome
+    app: {{ .Chart.Name }}
   ports:
     - port: {{ .Values.port }}
       targetPort: {{ .Values.port }}

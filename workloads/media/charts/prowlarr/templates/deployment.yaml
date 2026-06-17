@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: prowlarr
+  name: {{ .Chart.Name }}
 spec:
   replicas: 1
   strategy:
     type: Recreate
   selector:
     matchLabels:
-      app: prowlarr
+      app: {{ .Chart.Name }}
   template:
     metadata:
       labels:
-        app: prowlarr
+        app: {{ .Chart.Name }}
       annotations:
-        pre.hook.backup.velero.io/container: prowlarr
+        pre.hook.backup.velero.io/container: {{ .Chart.Name }}
         pre.hook.backup.velero.io/command: '["/bin/sh", "-c", "kill -STOP $(pidof Prowlarr || echo 1)"]'
-        post.hook.backup.velero.io/container: prowlarr
+        post.hook.backup.velero.io/container: {{ .Chart.Name }}
         post.hook.backup.velero.io/command: '["/bin/sh", "-c", "kill -CONT $(pidof Prowlarr || echo 1)"]'
     spec:
       securityContext:
@@ -25,8 +25,8 @@ spec:
         fsGroup: 65534
         fsGroupChangePolicy: OnRootMismatch
       containers:
-        - name: prowlarr
-          image: ghcr.io/home-operations/prowlarr:{{ .Values.imageTag }}@{{ .Values.imageDigest }}
+        - name: {{ .Chart.Name }}
+          image: {{ .Values.image }}:{{ .Values.imageTag }}@{{ .Values.imageDigest }}
           ports:
             - containerPort: {{ .Values.port }}
           env:
@@ -50,9 +50,9 @@ spec:
       volumes:
         - name: config
           persistentVolumeClaim:
-            claimName: prowlarr-config-pvc
+            claimName: {{ .Chart.Name }}-config-pvc
         - name: media
           persistentVolumeClaim:
-            claimName: pvc-prowlarr-smb
+            claimName: pvc-{{ .Chart.Name }}-smb
         - name: tmp
           emptyDir: {}

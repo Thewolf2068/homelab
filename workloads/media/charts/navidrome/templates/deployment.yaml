@@ -1,31 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: navidrome
+  name: {{ .Chart.Name }}
 spec:
   replicas: 1
   strategy:
     type: Recreate
   selector:
     matchLabels:
-      app: navidrome
+      app: {{ .Chart.Name }}
   template:
     metadata:
       labels:
-        app: navidrome
+        app: {{ .Chart.Name }}
       annotations:
-        pre.hook.backup.velero.io/container: navidrome
-        pre.hook.backup.velero.io/command: '["/bin/sh", "-c", "kill -STOP $(pidof navidrome || echo 1)"]'
-        post.hook.backup.velero.io/container: navidrome
-        post.hook.backup.velero.io/command: '["/bin/sh", "-c", "kill -CONT $(pidof navidrome || echo 1)"]'
+        pre.hook.backup.velero.io/container: {{ .Chart.Name }}
+        pre.hook.backup.velero.io/command: '["/bin/sh", "-c", "kill -STOP $(pidof {{ .Chart.Name }} || echo 1)"]'
+        post.hook.backup.velero.io/container: {{ .Chart.Name }}
+        post.hook.backup.velero.io/command: '["/bin/sh", "-c", "kill -CONT $(pidof {{ .Chart.Name }} || echo 1)"]'
     spec:
       securityContext:
         runAsUser: {{ .Values.global.securityContext.runAsUser }}
         runAsGroup: {{ .Values.global.securityContext.runAsGroup }}
         fsGroup: {{ .Values.global.securityContext.runAsGroup }}
       containers:
-        - name: navidrome
-          image: deluan/navidrome:{{ .Values.imageTag }}
+        - name: {{ .Chart.Name }}
+          image: {{ .Values.image }}:{{ .Values.imageTag }}
           ports:
             - containerPort: {{ .Values.port }}
           volumeMounts:
@@ -35,15 +35,11 @@ spec:
               mountPath: /music
               subPath: media/music/Library
               readOnly: false
-            - name: music
-              mountPath: /testing
-              subPath: media
-              readOnly: false
       
       volumes:
         - name: data
           persistentVolumeClaim:
-            claimName: navidrome-data-pvc
+            claimName: {{ .Chart.Name }}-data-pvc
         - name: music
           persistentVolumeClaim:
-            claimName: pvc-navidrome-smb
+            claimName: pvc-{{ .Chart.Name }}-smb
