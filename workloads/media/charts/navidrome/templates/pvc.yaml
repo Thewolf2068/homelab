@@ -21,4 +21,4 @@ spec:
     requests:
       storage: 10Gi
   volumeName: pv-navidrome-smb
-  storageClass: smb
+  storageClassName: smb
