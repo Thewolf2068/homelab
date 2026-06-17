@@ -11,5 +11,4 @@ spec:
       services:
         - name: navidrome
           port: {{ .Values.port }}
-  tls:
-    certResolver: cloudflare
+  tls: {}

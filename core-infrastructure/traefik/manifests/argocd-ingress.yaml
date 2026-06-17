@@ -22,5 +22,4 @@ spec:
           port: 443
           scheme: https
           serversTransport: argocd-transport
-  tls:
-    certResolver: cloudflare
+  tls: {} # Traefik automatically assigns your global wildcard certificate!
