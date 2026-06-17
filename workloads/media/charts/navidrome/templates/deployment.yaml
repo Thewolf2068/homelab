@@ -32,11 +32,11 @@ spec:
             - name: music
               mountPath: /music
               subPath: media/music # Isolates Navidrome strictly to your music directory
+              readOnly: false
       volumes:
         - name: data
           persistentVolumeClaim:
             claimName: navidrome-data-pvc
-        # Point this directly to the cluster-bound PVC proxy
         - name: music
           persistentVolumeClaim:
-            claimName: hetzner-smb-shared-pvc
+            claimName: pvc-navidrome-smb
