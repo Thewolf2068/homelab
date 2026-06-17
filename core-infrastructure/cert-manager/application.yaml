@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
+spec:
+  project: default
+  sources:
+    - repoURL: 'https://charts.jetstack.io'
+      chart: cert-manager
+      targetRevision: v1.14.0
+      helm:
+        parameters:
+          - name: installCRDs
+            value: "true"
+
+    - repoURL: 'https://github.com/Thewolf2068/homelab.git' # <-- update this
+      targetRevision: HEAD
+      path: core-infrastructure/cert-manager/manifests
+      ref: repo
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: cert-manager
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    createNamespace: true
