@@ -16,7 +16,7 @@ spec:
         valueFiles:
           - $repo/core-infrastructure/sealed-secrets/values.yaml
 
-    - repoURL: 'https://github.com/Thewolf2068/homelab.git' # <-- update this
+    - repoURL: 'https://github.com/Thewolf2068/homelab.git'
       targetRevision: HEAD
       ref: repo
   destination:

@@ -16,7 +16,7 @@ spec:
           - name: installCRDs
             value: "true"
 
-    - repoURL: 'https://github.com/Thewolf2068/homelab.git' # <-- update this
+    - repoURL: 'https://github.com/Thewolf2068/homelab.git'
       targetRevision: HEAD
       path: core-infrastructure/cert-manager/manifests
       ref: repo
@@ -27,3 +27,5 @@ spec:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

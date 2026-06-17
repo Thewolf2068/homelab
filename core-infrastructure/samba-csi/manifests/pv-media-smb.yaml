@@ -3,7 +3,7 @@ kind: PersistentVolume
 metadata:
   annotations:
     pv.kubernetes.io/provisioned-by: smb.csi.k8s.io
-  name: pv-navidrome-smb
+  name: pv-media-smb
 spec:
   capacity:
     storage: 50Gi
@@ -17,7 +17,7 @@ spec:
   csi:
     driver: smb.csi.k8s.io
     readOnly: false
-    volumeHandle: navidrome
+    volumeHandle: media-storage
     volumeAttributes:
       source: "//u543033.your-storagebox.de/backup"
     nodeStageSecretRef:

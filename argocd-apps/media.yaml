@@ -8,7 +8,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/thewolf2068/homelab.git'
+    repoURL: 'https://github.com/Thewolf2068/homelab.git'
     targetRevision: HEAD
     path: workloads/media
   destination:

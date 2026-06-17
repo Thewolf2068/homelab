@@ -15,7 +15,7 @@ spec:
         valueFiles:
           - $repo/core-infrastructure/traefik/values.yaml
 
-    - repoURL: 'https://github.com/Thewolf2068/homelab.git' # <-- update this
+    - repoURL: 'https://github.com/Thewolf2068/homelab.git'
       targetRevision: HEAD
       path: core-infrastructure/traefik/manifests
       ref: repo
@@ -26,3 +26,5 @@ spec:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

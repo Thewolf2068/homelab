@@ -1,16 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: root-app
+  name: longhorn
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
 spec:
   project: default
   source:
     repoURL: 'https://github.com/Thewolf2068/homelab.git'
     targetRevision: HEAD
-    path: argocd-apps
-    directory:
-      recurse: true
+    path: core-infrastructure/longhorn
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: argocd
@@ -18,5 +18,3 @@ spec:
     automated:
       prune: true
       selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
