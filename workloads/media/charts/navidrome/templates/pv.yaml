@@ -21,5 +21,5 @@ spec:
     volumeAttributes:
       source: "//u543033.your-storagebox.de/backup"
     nodeStageSecretRef:
-      name: smbcreds
+      name: hetzner-smb-creds
       namespace: kube-system
