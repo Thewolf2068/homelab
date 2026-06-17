@@ -25,13 +25,15 @@ additionalArguments:
   - "--certificatesresolvers.cloudflare.acme.dnschallenge.provider=cloudflare"
   - "--certificatesresolvers.cloudflare.acme.email=malenia@miquella.dev"
   - "--certificatesresolvers.cloudflare.acme.storage=/data/acme.json"
+  - "--certificatesresolvers.cloudflare.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
 
 persistence:
-  enabled: false # Temporary
+  enabled: true
   name: traefik-acme-storage
   path: /data
   size: 1Gi
   accessMode: ReadWriteOnce
+  storageClass: longhorn
 
 providers:
   kubernetesCRD:
