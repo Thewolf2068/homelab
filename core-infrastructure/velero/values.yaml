@@ -41,3 +41,5 @@ schedules:
     schedule: "0 3 * * *"
     template:
       ttl: "720h"
+      includedNamespaces:
+        - media
