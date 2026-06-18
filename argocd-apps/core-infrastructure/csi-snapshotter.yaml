@@ -13,7 +13,7 @@ spec:
     path: core-infrastructure/csi-snapshotter
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: kube-system
+    namespace: argocd
   syncPolicy:
     automated:
       prune: true
