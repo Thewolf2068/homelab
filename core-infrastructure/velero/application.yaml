@@ -10,12 +10,12 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/kubernetes-csi/external-snapshotter.git'
-    targetRevision: release-8.2 # Matches your cluster version
-    path: client/config/crd # Points exactly to the CRD directory upstream
+    repoURL: 'https://github.com/Thewolf2068/homelab.git'
+    targetRevision: HEAD
+    path: core-infrastructure/velero/crds # Points to your plain YAMLs
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: kube-system # CRDs are cluster-wide, but tracking metadata goes here
+    namespace: kube-system
   syncPolicy:
     automated:
       prune: true
