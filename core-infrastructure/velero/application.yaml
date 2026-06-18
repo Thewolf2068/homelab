@@ -14,8 +14,6 @@ spec:
       helm:
         valueFiles:
           - $repo/core-infrastructure/velero/values.yaml
-
-
     - repoURL: 'https://github.com/Thewolf2068/homelab.git'
       targetRevision: HEAD
       path: core-infrastructure/velero/manifests

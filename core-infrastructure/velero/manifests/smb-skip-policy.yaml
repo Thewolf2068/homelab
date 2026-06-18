@@ -1,7 +1,14 @@
-version: v1
-volumePolicies:
-- conditions:
-    storageClass:
-      - smb 
-  action:
-    type: skip
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: smb-skip-policy
+  namespace: velero
+data:
+  smb-skip-policy.yaml: |
+    version: v1
+    volumePolicies:
+    - conditions:
+        storageClass:
+          - smb
+      action:
+        type: skip
