@@ -1,6 +1,29 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "-5"
+  name: csi-snapshotter
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/kubernetes-csi/external-snapshotter.git'
+    targetRevision: release-8.2 # Matches your cluster version
+    path: client/config/crd # Points exactly to the CRD directory upstream
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: kube-system # CRDs are cluster-wide, but tracking metadata goes here
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
   name: velero
   namespace: argocd
   annotations:
