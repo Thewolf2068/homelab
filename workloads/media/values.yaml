@@ -40,5 +40,5 @@ radarr:
   image: "ghcr.io/home-operations/radarr"
   imageTag: "6.2.1.10461"
   imageDigest: "sha256:0756fffa75b30219e3dbac8d027a5389f53cbb34ae83fa4b0976c1b0524c8eb1"
-  port: 7878
+  port: "7878"
   subdomain: "radarr"
