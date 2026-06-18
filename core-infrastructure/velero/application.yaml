@@ -19,10 +19,6 @@ spec:
       targetRevision: HEAD
       path: core-infrastructure/velero/manifests
       ref: repo
-
-    - repoURL: 'https://github.com/Thewolf2068/homelab.git'
-      targetRevision: HEAD
-      path: core-infrastructure/velero/manifests/CRDs
   destination:
     server: https://kubernetes.default.svc
     namespace: velero
