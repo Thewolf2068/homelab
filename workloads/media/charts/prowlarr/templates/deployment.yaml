@@ -50,7 +50,7 @@ spec:
       volumes:
         - name: config
           persistentVolumeClaim:
-            claimName: {{ .Chart.Name }}-config-pvc
+            claimName: {{ .Chart.Name }}-data-pvc
         - name: media
           persistentVolumeClaim:
             claimName: pvc-{{ .Chart.Name }}-smb
