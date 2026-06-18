@@ -61,3 +61,10 @@ qbittorrent:
   imageDigest: "sha256:58e7ef6ed77f369c484b3066652c9e2e3d2c87bd44fce9883455565145fbd8eb"
   port: "8080"
   subdomain: "qbittorrent"
+
+seerr:
+  enabled: true
+  image: "ghcr.io/seerr-team/seerr"
+  imageTag: "sha-3f33842"
+  port: "5055"
+  subdomain: "seerr"
