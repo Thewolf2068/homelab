@@ -1,0 +1,9 @@
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshotClass
+metadata:
+  name: longhorn-snapshot-class
+  labels:
+    # This label tells Velero to use this class for CSI snapshots
+    velero.io/csi-volumesnapshotclass: "true"
+driver: driver.longhorn.io
+deletionPolicy: Delete
