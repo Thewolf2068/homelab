@@ -36,11 +36,39 @@ kubectl:
     tag: latest
 
 
-# schedules:
-#   velero-daily-backup:
-#     schedule: "0 3 * * *"
-#     template:
-#       ttl: "720h"
-#       includedNamespaces:
-#         - media
-#       resourcePoliciesConfigMap: smb-skip-policy
+extraObjects:
+  - apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      name: longhorn-volume-policy
+      namespace: velero
+    data:
+      policies.yaml: |
+        version: v1
+        volumePolicies:
+        # Match Longhorn and snapshot its data
+        - conditions:
+            storageClass:
+              - longhorn
+          action:
+            type: snapshot # Change to 'fs-backup' if you aren't using CSI VolumeSnapshotClasses
+        # Catch-all: skip data backup for all other storage classes
+        - conditions: {}
+          action:
+            type: skip
+
+schedules:
+  media-pvc-backup:
+    disabled: false
+    schedule: "0 3 * * *" # Daily at 3 AM
+    template:
+      includedNamespaces:
+        - media
+      includedResources:
+        - persistentvolumeclaims
+        - persistentvolumes
+      
+      resourcePolicy:
+        kind: configmap
+        name: longhorn-volume-policy
+
