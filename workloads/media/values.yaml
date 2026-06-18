@@ -65,6 +65,6 @@ qbittorrent:
 seerr:
   enabled: true
   image: "ghcr.io/seerr-team/seerr"
-  imageTag: "3.3.0"
+  imageTag: "v3.3.0"
   port: "5055"
   subdomain: "seerr"
