@@ -43,3 +43,4 @@ schedules:
       ttl: "720h"
       includedNamespaces:
         - media
+      resourcePoliciesConfigMap: smb-skip-policy

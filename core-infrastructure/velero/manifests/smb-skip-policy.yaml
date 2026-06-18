@@ -1,0 +1,7 @@
+version: v1
+volumePolicies:
+- conditions:
+    storageClass:
+      - smb 
+  action:
+    type: skip
