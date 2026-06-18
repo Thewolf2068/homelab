@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}
+      annotations:
+        pre.hook.backup.velero.io/container: {{ .Chart.Name }}
+        pre.hook.backup.velero.io/command: '["/bin/sh", "-c", "kill -STOP $(pidof {{ .Chart.Name }} || echo 1)"]'
+        post.hook.backup.velero.io/container: {{ .Chart.Name }}
+        post.hook.backup.velero.io/command: '["/bin/sh", "-c", "kill -CONT $(pidof {{ .Chart.Name }} || echo 1)"]'
+    spec:
+      securityContext:
+        runAsUser: {{ .Values.global.securityContextHomeOps.runAsUser }}
+        runAsGroup: {{ .Values.global.securityContextHomeOps.runAsGroup }}
+        fsGroup: 65534
+        fsGroupChangePolicy: OnRootMismatch
+      containers:
+        - name: {{ .Chart.Name }}
+          image: {{ .Values.image }}:{{ .Values.imageTag }}@{{ .Values.imageDigest }}
+          ports:
+            - containerPort: {{ .Values.port }}
+          env:
+            - name: TZ
+              value: "UTC"
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: true
+          volumeMounts:
+            - name: config
+              mountPath: /config
+            - name: media
+              mountPath: /media
+              subPath: media
+              readOnly: false
+            - name: tmp
+              mountPath: /tmp
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: {{ .Chart.Name }}-data-pvc
+        - name: media
+          persistentVolumeClaim:
+            claimName: pvc-{{ .Chart.Name }}-smb
+        - name: tmp
+          emptyDir: {}
