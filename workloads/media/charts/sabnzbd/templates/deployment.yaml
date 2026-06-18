@@ -20,8 +20,8 @@ spec:
         post.hook.backup.velero.io/command: '["/bin/sh", "-c", "kill -CONT $(pidof {{ .Chart.Name }} || echo 1)"]'
     spec:
       securityContext:
-        runAsUser: {{ .Values.global.securityContext.runAsUser }}
-        runAsGroup: {{ .Values.global.securityContext.runAsGroup }}
+        runAsUser: {{ .Values.global.securityContextHomeOps.runAsUser }}
+        runAsGroup: {{ .Values.global.securityContextHomeOps.runAsGroup }}
         fsGroup: 65534
         fsGroupChangePolicy: OnRootMismatch
       containers:

@@ -4,6 +4,9 @@ global:
   securityContext:
     runAsUser: 1000
     runAsGroup: 1000
+  securityContextHomeOps:
+    runAsUser: 65534
+    runAsGroup: 65534
 
 navidrome:
   enabled: true
