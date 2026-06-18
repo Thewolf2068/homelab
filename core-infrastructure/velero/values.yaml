@@ -36,11 +36,11 @@ kubectl:
     tag: latest
 
 
-schedules:
-  velero-daily-backup:
-    schedule: "0 3 * * *"
-    template:
-      ttl: "720h"
-      includedNamespaces:
-        - media
-      resourcePoliciesConfigMap: smb-skip-policy
+# schedules:
+#   velero-daily-backup:
+#     schedule: "0 3 * * *"
+#     template:
+#       ttl: "720h"
+#       includedNamespaces:
+#         - media
+#       resourcePoliciesConfigMap: smb-skip-policy
