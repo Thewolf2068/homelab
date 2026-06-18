@@ -1,25 +1,3 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  annotations:
-    argocd.argoproj.io/sync-wave: "-5"
-  name: csi-snapshotter
-  namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
-spec:
-  project: default
-  source:
-    repoURL: 'https://github.com/Thewolf2068/homelab.git'
-    targetRevision: HEAD
-    path: core-infrastructure/velero/crds # Points to your plain YAMLs
-  destination:
-    server: 'https://kubernetes.default.svc'
-    namespace: kube-system
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
