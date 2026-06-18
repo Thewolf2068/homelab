@@ -59,5 +59,5 @@ qbittorrent:
   image: "ghcr.io/home-operations/qbittorrent"
   imageTag: "5.2.2"
   imageDigest: "sha256:58e7ef6ed77f369c484b3066652c9e2e3d2c87bd44fce9883455565145fbd8eb"
-  port: "6881"
+  port: "8080"
   subdomain: "qbittorrent"
