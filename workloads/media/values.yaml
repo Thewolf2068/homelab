@@ -53,3 +53,11 @@ sonarr:
   imageDigest: "sha256:6806001ccc2ec95d941c9c0de012dbcb59c6a33932cfc17f71e300bdd48cabfe"
   port: "8989"
   subdomain: "sonarr"
+
+qbittorrent:
+  enabled: true
+  image: "ghcr.io/home-operations/qbittorrent"
+  imageTag: "5.2.2"
+  imageDigest: "sha256:58e7ef6ed77f369c484b3066652c9e2e3d2c87bd44fce9883455565145fbd8eb"
+  port: "6881"
+  subdomain: "qbittorrent"

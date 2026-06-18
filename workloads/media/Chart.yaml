@@ -3,12 +3,12 @@ name: media
 description: A Helm umbrella chart for my media deployments
 version: 0.1.0
 
-dependencies:
-  - name: navidrome
-    version: "0.1.0"
-    repository: "file://./charts/navidrome"
-    condition: navidrome.enabled
-  - name: prowlarr
-    version: "0.1.0"
-    repository: "file://./charts/prowlarr"
-    condition: prowlarr.enabled
+# dependencies:
+#   - name: navidrome
+#     version: "0.1.0"
+#     repository: "file://./charts/navidrome"
+#     condition: navidrome.enabled
+#   - name: prowlarr
+#     version: "0.1.0"
+#     repository: "file://./charts/prowlarr"
+#     condition: prowlarr.enabled
