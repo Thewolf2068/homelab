@@ -9,6 +9,6 @@ spec:
     - match: Host(`{{ .Values.subdomain }}.miquella.dev`)
       kind: Rule
       services:
-        - name: prowlarr
+        - name: {{ .Chart.Name }}
           port: {{ .Values.port }}
   tls: {}
