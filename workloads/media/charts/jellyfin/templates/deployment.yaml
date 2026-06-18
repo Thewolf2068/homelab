@@ -30,7 +30,7 @@ spec:
             - containerPort: {{ .Values.port }}
           volumeMounts:
             - name: data
-              mountPath: /data
+              mountPath: /config
             - name: media
               mountPath: /media
               subPath: media/
