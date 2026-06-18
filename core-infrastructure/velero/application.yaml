@@ -9,10 +9,6 @@ metadata:
 spec:
   project: default
   sources:
-    - repoURL: 'https://github.com/Thewolf2068/homelab.git'
-      targetRevision: HEAD
-      path: core-infrastructure/velero/manifests/crds
-
     - repoURL: https://vmware-tanzu.github.io/helm-charts
       chart: velero
       targetRevision: "8.3.0"
