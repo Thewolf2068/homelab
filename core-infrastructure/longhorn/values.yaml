@@ -16,6 +16,7 @@ csi:
 defaultSettings:
   defaultReplicaCount: 3
   storageMinimalAvailablePercentage: 10
+  storageReservedPercentageForDefaultDisk: 10
   guaranteedEngineManagerCPU: 5
   guaranteedReplicaManagerCPU: 5
 
