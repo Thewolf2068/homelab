@@ -20,7 +20,7 @@ rules:
     resources: ["storageclasses"]
     verbs: ["get", "list", "watch"]
   - apiGroups: ["snapshot.storage.k8s.io"]
-    resources: ["volumesnapshots", "volumesnapshotcontents"]
+    resources: ["volumesnapshots", "volumesnapshotcontents", "volumesnapshots/status", "volumesnapshotcontents/status"]
     verbs: ["get", "list", "watch", "update", "patch", "create", "delete"]
   - apiGroups: ["snapshot.storage.k8s.io"]
     resources: ["volumesnapshotclasses"]
