@@ -8,7 +8,13 @@ configuration:
         region: auto
         s3ForcePathStyle: true
         s3Url: https://ba7af738ac3fcf781135c6b598a7f096.r2.cloudflarestorage.com
-  volumeSnapshotLocation: []
+  volumeSnapshotLocation:
+    - name: default
+      provider: velero.io/aws
+      config:
+        region: auto
+        s3ForcePathStyle: true
+        s3Url: https://ba7af738ac3fcf781135c6b598a7f096.r2.cloudflarestorage.com
 
 
 initContainers:
@@ -17,11 +23,7 @@ initContainers:
     volumeMounts:
       - mountPath: /target
         name: plugins
-  - name: velero-plugin-for-csi
-    image: velero/velero-plugin-for-csi:v1.15.2
-    volumeMounts:
-      - mountPath: /target
-        name: plugins
+
 
 
 deployNodeAgent: true
@@ -33,6 +35,8 @@ nodeAgent:
 credentials:
   useSecret: true
   existingSecret: velero-s3-credentials
+
+features: EnableCSI
 
 upgradeCRDs: false
 kubectl:
