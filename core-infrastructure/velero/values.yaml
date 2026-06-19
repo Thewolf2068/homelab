@@ -8,13 +8,7 @@ configuration:
         region: auto
         s3ForcePathStyle: true
         s3Url: https://ba7af738ac3fcf781135c6b598a7f096.r2.cloudflarestorage.com
-  volumeSnapshotLocation:
-    - name: default
-      provider: velero.io/aws
-      config:
-        region: auto
-        s3ForcePathStyle: true
-        s3Url: https://ba7af738ac3fcf781135c6b598a7f096.r2.cloudflarestorage.com
+  volumeSnapshotLocation: []
 
 
 initContainers:

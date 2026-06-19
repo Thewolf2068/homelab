@@ -15,6 +15,9 @@ spec:
       helm:
         valueFiles:
           - $repo/core-infrastructure/velero/values.yaml
+        parameters:
+          - name: features
+            value: "EnableCSI"
 
     - repoURL: 'https://github.com/Thewolf2068/homelab.git'
       targetRevision: HEAD
