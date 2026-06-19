@@ -31,6 +31,8 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /data
+            - name: cache
+              mountPath: /data/cache
             - name: music
               mountPath: /music
               subPath: media/music/Library
@@ -43,3 +45,5 @@ spec:
         - name: music
           persistentVolumeClaim:
             claimName: pvc-{{ .Chart.Name }}-smb
+        - name: cache
+          emptyDir: {}
