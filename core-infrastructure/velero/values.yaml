@@ -45,6 +45,7 @@ schedules:
       includedResources:
         - persistentvolumeclaims
         - persistentvolumes
+        - pods
       
       resourcePolicy:
         kind: configmap
