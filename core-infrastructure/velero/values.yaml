@@ -1,5 +1,7 @@
 configuration:
   defaultVolumesToFsBackup: true
+  extraArgs:
+    - --features=EnableCSI
   backupStorageLocation:
     - name: default
       provider: velero.io/aws
@@ -10,14 +12,12 @@ configuration:
         s3Url: https://ba7af738ac3fcf781135c6b598a7f096.r2.cloudflarestorage.com
   volumeSnapshotLocation: []
 
-
 initContainers:
   - name: velero-plugin-for-aws
     image: velero/velero-plugin-for-aws:v1.11.1
     volumeMounts:
       - mountPath: /target
         name: plugins
-
 
 
 deployNodeAgent: true
@@ -29,8 +29,6 @@ nodeAgent:
 credentials:
   useSecret: true
   existingSecret: velero-s3-credentials
-
-features: EnableCSI
 
 upgradeCRDs: false
 kubectl:
