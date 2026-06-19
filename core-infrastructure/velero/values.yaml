@@ -36,27 +36,6 @@ kubectl:
     tag: latest
 
 
-extraObjects:
-  - apiVersion: v1
-    kind: ConfigMap
-    metadata:
-      name: longhorn-volume-policy
-      namespace: velero
-    data:
-      policies.yaml: |
-        version: v1
-        volumePolicies:
-        # Match Longhorn and snapshot its data
-        - conditions:
-            storageClass:
-              - longhorn
-          action:
-            type: snapshot # Change to 'fs-backup' if you aren't using CSI VolumeSnapshotClasses
-        # Catch-all: skip data backup for all other storage classes
-        - conditions: {}
-          action:
-            type: skip
-
 schedules:
   media-pvc-backup:
     disabled: false
