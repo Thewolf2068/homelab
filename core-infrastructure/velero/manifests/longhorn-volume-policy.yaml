@@ -13,7 +13,7 @@ data:
         storageClass:
           - longhorn
       action:
-        type: snapshot
+        type: fs-backup
     # Catch-all: skip data backup for all other storage classes
     - conditions: {}
       action:

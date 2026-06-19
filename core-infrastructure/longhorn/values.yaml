@@ -18,5 +18,4 @@ defaultSettings:
   storageMinimalAvailablePercentage: 10
   guaranteedEngineManagerCPU: 5
   guaranteedReplicaManagerCPU: 5
-  backupTarget: "s3://homelab-backup@auto/"
-  backupTargetCredentialSecret: "longhorn-backup-secret"
+
