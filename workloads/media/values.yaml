@@ -62,6 +62,14 @@ sonarr:
   port: "8989"
   subdomain: "sonarr"
 
+sonarr-anime:
+  enabled: true
+  image: "ghcr.io/home-operations/sonarr"
+  imageTag: "4.0.17.2969"
+  imageDigest: "sha256:6806001ccc2ec95d941c9c0de012dbcb59c6a33932cfc17f71e300bdd48cabfe"
+  port: "8989"
+  subdomain: "sonarr-anime"
+
 bazarr:
   enabled: true
   image: "ghcr.io/home-operations/bazarr"
@@ -70,13 +78,13 @@ bazarr:
   port: "6767"
   subdomain: "bazarr"
 
-sonarr-anime:
+bazarr-anime:
   enabled: true
-  image: "ghcr.io/home-operations/sonarr"
-  imageTag: "4.0.17.2969"
-  imageDigest: "sha256:6806001ccc2ec95d941c9c0de012dbcb59c6a33932cfc17f71e300bdd48cabfe"
-  port: "8989"
-  subdomain: "sonarr-anime"
+  image: "ghcr.io/home-operations/bazarr"
+  imageTag: "1.5.6"
+  imageDigest: "sha256:79fc37491f55c7e24427bcd669bce3df2d7415ca432a47ce9d53cc5988af8411 "
+  port: "6767"
+  subdomain: "bazarr-anime"
 
 qbittorrent:
   enabled: true
