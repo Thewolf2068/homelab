@@ -9,7 +9,7 @@
 **Talhelper config**:
 
 ```yaml
-1clusterName: homelab-cluster
+clusterName: homelab-cluster
 talosVersion: v1.13.4
 kubernetesVersion: 1.36.1
 endpoint: ${CONTROL_PLANE_IP} # or ${VIP_CONTROL_PLANE_IP}
@@ -63,9 +63,6 @@ worker:
                 - bind
                 - rshared
                 - rw
-
-
-
 ```
 
 ## Initial Setup
@@ -125,7 +122,7 @@ worker-3         Ready    <none>          22m   v1.36.1
 
 It looks like this
 
-```shell
+```yaml
 ~/homelab/talos-cluster 󰴈 ❯ cat -p sealing-key.yaml
 apiVersion: v1
 kind: Secret
