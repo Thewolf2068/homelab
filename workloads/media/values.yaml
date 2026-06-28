@@ -12,7 +12,7 @@ navidrome:
   enabled: true
   image:
     repository: "deluan/navidrome"
-    tag: "0.61.2"
+    tag: "0.61.2@sha256:9fa40b3d8dec43ceb2213d1fa551da3dcfef6ac6d19c2e534efb92527c2bafd2"
   port: "4533"
   subdomain: "navidrome"
 
@@ -28,7 +28,7 @@ jellyfin:
   enabled: true
   image:
     repository: "jellyfin/jellyfin"
-    tag: "10.11.11"
+    tag: "10.11.11@sha256:aefb67e6a7ff1debdd154a78a7bbb780fd0c873d8639210a7f6a2016ad2b35db"
   port: "8096"
   subdomain: "jellyfin"
 
@@ -100,7 +100,7 @@ seerr:
   enabled: true
   image:
     repository: "ghcr.io/seerr-team/seerr"
-    tag: "v3.3.0"
+    tag: "v3.3.0@sha256:c92d2dc117f62185e7bcb88cd56efd374ea79210eaf433275449e8d5988eb5a8"
   port: "5055"
   subdomain: "seerr"
 
@@ -108,6 +108,6 @@ maintainerr:
   enabled: true
   image:
     repository: "ghcr.io/maintainerr/maintainerr"
-    tag: "3.15.1"
+    tag: "3.15.1@sha256:fc23686db8c34f6383f0c4e900f1db64d5c73a8191f8554dc983e2e3fe91a7d5"
   port: "6246"
   subdomain: "maintainerr"

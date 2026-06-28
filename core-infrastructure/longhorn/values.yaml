@@ -8,7 +8,7 @@ persistence:
 
 image:
   repository: longhornio/longhorn-manager
-  tag: v1.12.0
+  tag: v1.12.0@sha256:fd245bae2e8254ed475073410f8462e95fab8783dd12d1c084777b5ab53bfb86
 
 csi:
   kubeletRootDir: /var/lib/kubelet
