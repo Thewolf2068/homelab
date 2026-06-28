@@ -10,100 +10,113 @@ global:
 
 navidrome:
   enabled: true
-  image: "deluan/navidrome"
-  imageTag: "0.61.2"
+  image:
+    repository: "deluan/navidrome"
+    tag: "0.61.2"
   port: "4533"
   subdomain: "navidrome"
 
 prowlarr:
   enabled: true
-  image: "ghcr.io/home-operations/prowlarr"
-  imageTag: "2.4.0.5397"
-  imageDigest: "sha256:6fdfd467c60cc00210121ac2ecf663a310eaec834429d75a190e98be645574ef"
+  image:
+    repository: "ghcr.io/home-operations/prowlarr"
+    tag: "2.4.0.5397"
+    digest: "sha256:6fdfd467c60cc00210121ac2ecf663a310eaec834429d75a190e98be645574ef"
   port: "9696"
   subdomain: "prowlarr"
 
 jellyfin:
   enabled: true
-  image: "jellyfin/jellyfin"
-  imageTag: "10.11.11"
+  image:
+    repository: "jellyfin/jellyfin"
+    tag: "10.11.11"
   port: "8096"
   subdomain: "jellyfin"
 
 sabnzbd:
   enabled: true
-  image: "ghcr.io/home-operations/sabnzbd"
-  imageTag: "5.0.4"
-  imageDigest: "sha256:0c78c4752607d6d3fca43817af3540dad515c48dbab2c980ef7ef5bc27849b2b"
+  image:
+    repository: "ghcr.io/home-operations/sabnzbd"
+    tag: "5.0.4"
+    digest: "sha256:0c78c4752607d6d3fca43817af3540dad515c48dbab2c980ef7ef5bc27849b2b"
   port: "8080"
   subdomain: "sabnzbd"
 
 radarr:
   enabled: true
-  image: "ghcr.io/home-operations/radarr"
-  imageTag: "6.2.1.10461"
-  imageDigest: "sha256:0756fffa75b30219e3dbac8d027a5389f53cbb34ae83fa4b0976c1b0524c8eb1"
+  image:
+    repository: "ghcr.io/home-operations/radarr"
+    tag: "6.2.1.10461"
+    digest: "sha256:0756fffa75b30219e3dbac8d027a5389f53cbb34ae83fa4b0976c1b0524c8eb1"
   port: "7878"
   subdomain: "radarr"
 
 radarr-anime:
   enabled: true
-  image: "ghcr.io/home-operations/radarr"
-  imageTag: "6.2.1.10461"
-  imageDigest: "sha256:0756fffa75b30219e3dbac8d027a5389f53cbb34ae83fa4b0976c1b0524c8eb1"
+  image:
+    repository: "ghcr.io/home-operations/radarr"
+    tag: "6.2.1.10461"
+    digest: "sha256:0756fffa75b30219e3dbac8d027a5389f53cbb34ae83fa4b0976c1b0524c8eb1"
   port: "7878"
   subdomain: "radarr-anime"
 
 sonarr:
   enabled: true
-  image: "ghcr.io/home-operations/sonarr"
-  imageTag: "4.0.17.2978"
-  imageDigest: "sha256:2cd77fb3d81909a734d61bb8f71462044cb9d2f187e626a28a05a5c4e4be8fd2"
+  image:
+    repository: "ghcr.io/home-operations/sonarr"
+    tag: "4.0.17.2978"
+    digest: "sha256:2cd77fb3d81909a734d61bb8f71462044cb9d2f187e626a28a05a5c4e4be8fd2"
   port: "8989"
   subdomain: "sonarr"
 
 sonarr-anime:
   enabled: true
-  image: "ghcr.io/home-operations/sonarr"
-  imageTag: "4.0.17.2978"
-  imageDigest: "sha256:2cd77fb3d81909a734d61bb8f71462044cb9d2f187e626a28a05a5c4e4be8fd2"
+  image:
+    repository: "ghcr.io/home-operations/sonarr"
+    tag: "4.0.17.2978"
+    digest: "sha256:2cd77fb3d81909a734d61bb8f71462044cb9d2f187e626a28a05a5c4e4be8fd2"
   port: "8989"
   subdomain: "sonarr-anime"
 
 bazarr:
   enabled: true
-  image: "ghcr.io/home-operations/bazarr"
-  imageTag: "1.5.6"
-  imageDigest: "sha256:79fc37491f55c7e24427bcd669bce3df2d7415ca432a47ce9d53cc5988af8411 "
+  image:
+    repository: "ghcr.io/home-operations/bazarr"
+    tag: "1.5.6"
+    digest: "sha256:79fc37491f55c7e24427bcd669bce3df2d7415ca432a47ce9d53cc5988af8411 "
   port: "6767"
   subdomain: "bazarr"
 
 bazarr-anime:
   enabled: true
-  image: "ghcr.io/home-operations/bazarr"
-  imageTag: "1.5.6"
-  imageDigest: "sha256:79fc37491f55c7e24427bcd669bce3df2d7415ca432a47ce9d53cc5988af8411 "
+  image:
+    repository: "ghcr.io/home-operations/bazarr"
+    tag: "1.5.6"
+    digest: "sha256:79fc37491f55c7e24427bcd669bce3df2d7415ca432a47ce9d53cc5988af8411 "
   port: "6767"
   subdomain: "bazarr-anime"
 
 qbittorrent:
   enabled: true
-  image: "ghcr.io/home-operations/qbittorrent"
-  imageTag: "5.2.2"
-  imageDigest: "sha256:58e7ef6ed77f369c484b3066652c9e2e3d2c87bd44fce9883455565145fbd8eb"
+  image:
+    repository: "ghcr.io/home-operations/qbittorrent"
+    tag: "5.2.2"
+    digest: "sha256:58e7ef6ed77f369c484b3066652c9e2e3d2c87bd44fce9883455565145fbd8eb"
   port: "8080"
   subdomain: "qbittorrent"
 
 seerr:
   enabled: true
-  image: "ghcr.io/seerr-team/seerr"
-  imageTag: "v3.3.0"
+  image:
+    repository: "ghcr.io/seerr-team/seerr"
+    tag: "v3.3.0"
   port: "5055"
   subdomain: "seerr"
 
 maintainerr:
   enabled: true
-  image: "ghcr.io/maintainerr/maintainerr"
-  imageTag: "3.15.1"
+  image:
+    repository: "ghcr.io/maintainerr/maintainerr"
+    tag: "3.15.1"
   port: "6246"
   subdomain: "maintainerr"
