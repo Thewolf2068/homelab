@@ -12,7 +12,7 @@ configuration:
 
 initContainers:
   - name: velero-plugin-for-aws
-    image: velero/velero-plugin-for-aws:v1.11.1
+    image: velero/velero-plugin-for-aws:v1.11.1@sha256:3b0c402e0d55eb797a7ebe1f2525f18bdcdca8ee826680cd2d7cf657071e9d58
     volumeMounts:
       - mountPath: /target
         name: plugins
@@ -32,7 +32,7 @@ upgradeCRDs: false
 kubectl:
   image:
     repository: bitnami/kubectl
-    tag: latest
+    tag: latest@sha256:b9f4412e53f09d76b0991cdd29c0feff4c1d1e112b307e0ab155e5b050a9f4ec
 
 
 schedules:
