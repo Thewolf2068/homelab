@@ -60,7 +60,7 @@ sonarr:
   enabled: true
   image:
     repository: "ghcr.io/home-operations/sonarr"
-    tag: "4.0.17.2978@sha256:2cd77fb3d81909a734d61bb8f71462044cb9d2f187e626a28a05a5c4e4be8fd2"
+    tag: "4.0.18.2978@sha256:2cd77fb3d81909a734d61bb8f71462044cb9d2f187e626a28a05a5c4e4be8fd2"
   port: "8989"
   subdomain: "sonarr"
 
@@ -68,7 +68,7 @@ sonarr-anime:
   enabled: true
   image:
     repository: "ghcr.io/home-operations/sonarr"
-    tag: "4.0.17.2978@sha256:2cd77fb3d81909a734d61bb8f71462044cb9d2f187e626a28a05a5c4e4be8fd2"
+    tag: "4.0.18.2978@sha256:2cd77fb3d81909a734d61bb8f71462044cb9d2f187e626a28a05a5c4e4be8fd2"
   port: "8989"
   subdomain: "sonarr-anime"
 
