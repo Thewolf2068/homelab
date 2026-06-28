@@ -1,4 +1,3 @@
 {
-  "extends": ["config:base", "docker:pinDigests"],
-  "helm": { "enabled": true }
+  "extends": ["config:base", "docker:pinDigests"]
 }
