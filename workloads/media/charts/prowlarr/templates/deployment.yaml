@@ -26,7 +26,7 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
       containers:
         - name: {{ .Chart.Name }}
-          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}@{{ .Values.image.digest }}
+          image: {{ .Values.image.repository }}@{{ .Values.image.tag }}
           ports:
             - containerPort: {{ .Values.port }}
           env:
