@@ -31,9 +31,8 @@ credentials:
 upgradeCRDs: false
 kubectl:
   image:
-    repository: bitnami/kubectl
-    tag: latest@sha256:b9f4412e53f09d76b0991cdd29c0feff4c1d1e112b307e0ab155e5b050a9f4ec
-
+    repository: alpine/kubectl
+    tag: 1.36.2@sha256:03f27b659dbbc2fb36b188dc5b4b4d83228616d164dbf1b2f8f0435b9c6a0ee9
 
 schedules:
   media-pvc-backup:
