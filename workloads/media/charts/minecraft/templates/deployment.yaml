@@ -28,7 +28,6 @@ spec:
           image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
           ports:
             - containerPort: {{ .Values.port }}
-              hostPort: {{ .Values.port }}
           volumeMounts:
             - name: data
               mountPath: /data
