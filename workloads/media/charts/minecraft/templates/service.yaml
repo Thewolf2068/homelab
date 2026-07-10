@@ -3,10 +3,8 @@ kind: Service
 metadata:
   name: {{ .Chart.Name }}
 spec:
-  type: NodePort
   selector:
     app: {{ .Chart.Name }}
   ports:
     - port: {{ .Values.port }}
       targetPort: {{ .Values.port }}
-      nodePort: 31040
