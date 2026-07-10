@@ -9,4 +9,4 @@ spec:
   ports:
     - port: {{ .Values.port }}
       targetPort: {{ .Values.port }}
-      nodePort: {{ .Values.port }}
+      nodePort: 31040
