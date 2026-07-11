@@ -28,7 +28,7 @@ spec:
           image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
           ports:
             - containerPort: {{ .Values.port }}
-              name: minecraft
+              name: minecraft-vanilla
           env:
             - name: EULA
               value: "TRUE"

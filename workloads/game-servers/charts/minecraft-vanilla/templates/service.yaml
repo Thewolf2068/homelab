@@ -9,7 +9,7 @@ spec:
   selector:
     app: {{ .Chart.Name }}
   ports:
-    - name: minecraft
+    - name: minecraft-vanilla
       port: {{ .Values.port }}
       targetPort: {{ .Values.port }}
       protocol: TCP
