@@ -28,7 +28,7 @@ spec:
           image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
           ports:
             - containerPort: {{ .Values.port }}
-              name: minecraft-vanilla
+              name: minecraft
           env:
             - name: EULA
               value: "TRUE"
@@ -42,10 +42,10 @@ spec:
               value: Europe/Berlin
             - name: ENABLE_WHITELIST
               value: {{ .Values.whitelist | default "true" | quote }}
-            - Name: WHITELIST
+            - name: WHITELIST
               valueFrom:
                 secretKeyRef:
-                  name: minecraft-whitelist
+                  name: {{ .Chart.Name }}-whitelist
                   key: names
           volumeMounts:
             - name: data
