@@ -4,10 +4,6 @@ deployment:
   replicas: 3
 
 ports:
-  minecraft:
-    port: 25565
-    expose: true
-    protocol: TCP
   web:
     hostPort: 80
     redirectTo:
