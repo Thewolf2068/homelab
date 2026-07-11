@@ -1,13 +1,16 @@
----
-apiVersion: bitnami.com/v1alpha1
-kind: SealedSecret
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
 metadata:
   name: cloudflare-api-token
   namespace: cert-manager
 spec:
-  encryptedData:
-    CLOUDFLARE_DNS_API_TOKEN: AgAwdxDS/k102RDMJCpSZlVTvC4N72bYLEJAT1QHvjZbsCeJ9xEXLWQPPgqkwZWkqvfuK9GdlUMNxlGJ3t6vIRP73i5oj1HS+XFKJpcg6Qu4j/dAK3nqcJsIsXnFFCMfkMwhZFQiAS0+ltKrRKD+Rnn1AlDQ6wsCg2SmN+QZ+1VVikiWdSLB28uCAL2B9BpNiE0VQkhS2lOqpqQtsw/wTECZt6MSinavsHmV94g2HyPvyCKilSEcX8tihZ2dPAWGpUEq4Gqs2NyJx3orqrqaUPwIMUROz/5LbG3zhDirLMnNk8aI3qOmBShZ7BMbGJaD0Ge2vY0/KN+YXXZ4R2JT18QNmnpkLJX1UdroQsox2mqh8nrN4mW4+Km2bjyaZdF8oPyFGJzhmi/dZTYGRfHtWFSthDz7WNCKuKtG0d9gARzy54lHKlO4Frkm7qEzosZhwPZ2Tq3v0t9MFn4TpnjolfKqXcT+6480qPXE0eqz924uNIVWOmBus0i476N1OgBbdNiScwmP7lI2KxZv3ipXckCxWtyLcv/0weajWUSqIYEswyFjUV4pZKtFW6DZTXlwOS3nbElQB/aau/+szzfoOMFjZg880AONqRjl15dm8F2N/sijjANH+W85erB88srKGHVztm4RbsS1ms54kxNY4fnvqIR9bpikDSqE991Igm7dZRrxDhDM7DLVSZJKuaIu1kxuzOyhuon2Qarifufv7N/bKv68hUEkEvR6i05tu3TRv9I2S8SUHL975F/hcUzTkgnk9oalTQ==
-  template:
-    metadata:
-      name: cloudflare-api-token
-      namespace: cert-manager
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: onepassword
+  target:
+    name: cloudflare-api-token
+    creationPolicy: Owner
+  data:
+    - secretKey: CLOUDFLARE_DNS_API_TOKEN
+      remoteRef:
+        key: cloudflare-dns-token/token
