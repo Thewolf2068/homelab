@@ -20,5 +20,5 @@ minecraft-vanilla:
   subdomain: "vanilla"
   type: "VANILLA"
   version: "26.1.1"
-  memory: "2G"
+  memory: "3G"
   storageSize: "5Gi"
