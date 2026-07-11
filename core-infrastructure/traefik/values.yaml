@@ -6,8 +6,7 @@ deployment:
 ports:
   minecraft:
     port: 25565
-    expose:
-      default: true
+    expose: true
     protocol: TCP
   web:
     hostPort: 80
