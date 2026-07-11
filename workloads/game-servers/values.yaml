@@ -1,0 +1,24 @@
+global:
+  domain: "miquella.dev"
+  securityContext:
+    runAsUser: 1000
+    runAsGroup: 1000
+
+mc-router:
+  enabled: true
+  image:
+    repository: "itzg/mc-router"
+    tag: "1.44.0@sha256:74c0f682cb45a1ac7ac25082c63f236bd6b04395508ad41d5825fd8cc8828b8f"
+  watchNamespace: "game-servers"
+
+minecraft:
+  enabled: true
+  image:
+    repository: "ghcr.io/itzg/minecraft-server"
+    tag: "2026.6.1@sha256:2a3ed0997720d79b7ed783a79e43143358b2e60d27daf15c2b1d27b59d04a6d8"
+  port: "25565"
+  subdomain: "minecraft"
+  type: "VANILLA"
+  version: "26.1.1"
+  memory: "2G"
+  storageSize: "5Gi"

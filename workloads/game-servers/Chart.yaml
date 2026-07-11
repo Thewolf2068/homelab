@@ -1,0 +1,4 @@
+apiVersion: v2
+name: game-servers
+description: A Helm umbrella chart for game server deployments
+version: 0.1.0

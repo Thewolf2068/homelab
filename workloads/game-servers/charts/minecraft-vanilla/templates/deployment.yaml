@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}
+      annotations:
+        pre.hook.backup.velero.io/container: {{ .Chart.Name }}
+        pre.hook.backup.velero.io/command: '["/bin/sh", "-c", "kill -STOP $(pidof java || echo 1)"]'
+        post.hook.backup.velero.io/container: {{ .Chart.Name }}
+        post.hook.backup.velero.io/command: '["/bin/sh", "-c", "kill -CONT $(pidof java || echo 1)"]'
+    spec:
+      securityContext:
+        runAsUser: {{ .Values.global.securityContext.runAsUser }}
+        runAsGroup: {{ .Values.global.securityContext.runAsGroup }}
+        fsGroup: {{ .Values.global.securityContext.runAsGroup }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          ports:
+            - containerPort: {{ .Values.port }}
+              name: minecraft
+          env:
+            - name: EULA
+              value: "TRUE"
+            - name: TYPE
+              value: {{ .Values.type | default "VANILLA" | quote }}
+            - name: VERSION
+              value: {{ .Values.version | default "LATEST" | quote }}
+            - name: MEMORY
+              value: {{ .Values.memory | default "2G" | quote }}
+            - name: TZ
+              value: Europe/Berlin
+            - name: ENABLE_WHITELIST
+              value: {{ .Values.whitelist | default "true" | quote }}
+            - Name: WHITELIST
+              valueFrom:
+                secretKeyRef:
+                  name: minecraft-whitelist
+                  key: names
+          volumeMounts:
+            - name: data
+              mountPath: /data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ .Chart.Name }}-data-pvc
