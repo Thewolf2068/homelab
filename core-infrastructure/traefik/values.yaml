@@ -12,6 +12,10 @@ ports:
     hostPort: 443
     tls:
       enabled: true
+  minecraft:
+    hostPort: 25565
+    port: 25565
+    protocol: TCP
 
 service:
   type: ClusterIP
