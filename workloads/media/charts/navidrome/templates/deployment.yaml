@@ -28,6 +28,17 @@ spec:
           image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
           ports:
             - containerPort: {{ .Values.port }}
+          env:
+            - name: ND_LASTFM_APIKEY
+              valueFrom:
+                secretKeyRef:
+                  name: navidrome-lastfm
+                  key: api-key
+            - name: ND_LASTFM_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: navidrome-lastfm
+                  key: shared-secret
           volumeMounts:
             - name: data
               mountPath: /data
