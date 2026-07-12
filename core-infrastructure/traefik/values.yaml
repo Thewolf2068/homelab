@@ -1,7 +1,7 @@
 deployment:
   podSecurityContext:
     fsGroup: 65532
-  replicas: 3
+  replicas: 2
 
 ports:
   web:
