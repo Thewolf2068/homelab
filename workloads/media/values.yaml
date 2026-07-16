@@ -96,10 +96,10 @@ maintainerr:
   port: "6246"
   subdomain: "maintainerr"
 
-# minecraft:
-#   enabled: true
-#   image:
-#     repository: "ghcr.io/itzg/minecraft-server"
-#     tag: "2026.6.1@sha256:2a3ed0997720d79b7ed783a79e43143358b2e60d27daf15c2b1d27b59d04a6d8"
-#   port: "25565"
-#   subdomain: "minecraft"
+syncyomi:
+  enabled: true
+  image:
+    repository: "ghcr.io/syncyomi/syncyomi"
+    tag: "v1.1.12@sha256:262993cce3ff38b96845a802432535d5898c7d623097a4c6bcf00af338c156d0"
+  port: "8282"
+  subdomain: "syncyomi"
