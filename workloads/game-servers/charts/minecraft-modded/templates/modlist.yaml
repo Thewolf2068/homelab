@@ -1,0 +1,34 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: minecraft-mods-list
+  namespace: minecraft
+data:
+  mods.txt: |
+    https://cdn.modrinth.com/data/MGcd6kTf/versions/uJz7ESID/1.3.5-backpacks_mod-1.21-1.21.1.jar
+    https://cdn.modrinth.com/data/bQ5TJA1E/versions/bVXaqvWr/Continents_26.2_v1.1.14.jar
+    https://cdn.modrinth.com/data/OsZiaDHq/versions/nLLornod/CreativeCore_NEOFORGE_v2.13.41_mc1.21.1.jar
+    https://cdn.modrinth.com/data/uCdwusMi/versions/ZpKb4kZp/DistantHorizons-3.2.0-b-1.21.1-fabric-neoforge.jar
+    https://cdn.modrinth.com/data/R2OftAxM/versions/GbNuOZ4S/FarmersDelight-1.21.1-1.3.2.jar
+    https://cdn.modrinth.com/data/46KJle7n/versions/695vQRhD/L_Ender's%20Cataclysm%201.21.1-3.32.jar
+    https://cdn.modrinth.com/data/Ua7DFN59/versions/ZB22DE9q/YungsApi-1.21.1-NeoForge-5.1.6.jar
+    https://cdn.modrinth.com/data/Ht4BfYp6/versions/urkCzBf6/YungsBridges-1.21.1-NeoForge-5.1.1.jar
+    https://cdn.modrinth.com/data/EsAfCjCV/versions/uAKA6Laj/appleskin-neoforge-mc1.21-3.0.9.jar
+    https://cdn.modrinth.com/data/lhGA9TYQ/versions/ZxYGwlk0/architectury-13.0.8-neoforge.jar
+    https://cdn.modrinth.com/data/TKB6INcv/versions/7IK2KsiH/ars_nouveau-1.21.1-5.12.1.jar
+    https://cdn.modrinth.com/data/BwbT0OZE/versions/a4qrRbNs/arsdelight-2.2.2.jar
+    https://cdn.modrinth.com/data/9s6osm5g/versions/izKINKFg/cloth-config-15.0.140-neoforge.jar
+    https://cdn.modrinth.com/data/u58R1TMW/versions/kDbM9LpX/connector-2.0.0-beta.15+1.21.1-full.jar
+    https://cdn.modrinth.com/data/Yd4wb5wZ/versions/3ouvVSn2/crittersandcompanions-neoforge-2.6.0.jar
+    https://cdn.modrinth.com/data/vvuO3ImH/versions/yohfFbgD/curios-neoforge-9.5.1+1.21.1.jar
+    https://cdn.modrinth.com/data/uXXizFIs/versions/x7kQWVju/ferritecore-7.0.3-neoforge.jar
+    https://cdn.modrinth.com/data/Aqlf1Shp/versions/7nHK7hMg/forgified-fabric-api-0.116.7+2.2.4+1.21.1.jar
+    https://cdn.modrinth.com/data/8BmcQJ2H/versions/tPkJmim6/geckolib-neoforge-1.21.1-4.9.2.jar
+    https://cdn.modrinth.com/data/u6dRKJwZ/versions/uBBwu3s1/jei-1.21.1-neoforge-19.38.0.366.jar
+    https://cdn.modrinth.com/data/J81TRJWm/versions/stJDU839/konkrete_neoforge_1.9.9_MC_1.21.jar
+    https://cdn.modrinth.com/data/FoVacERa/versions/fTRMVgyZ/lionfishapi-3.1.jar
+    https://cdn.modrinth.com/data/gvQqBUqZ/versions/DDUrRVCA/lithium-neoforge-0.15.4+mc1.21.1.jar
+    https://cdn.modrinth.com/data/XaDC71GB/versions/qPASucBM/lithostitched-1.7.13-neoforge-21.1.jar
+    https://cdn.modrinth.com/data/2M01OLQq/versions/IuqNIoAi/shulkerboxtooltip-neoforge-5.1.9+1.21.1.jar
+    https://cdn.modrinth.com/data/lWDHr9jE/versions/vNrkxC3z/tectonic-3.0.26-neoforge-21.1.jar
+    https://cdn.modrinth.com/data/1eAoo2KR/versions/7TVdVtxF/yet_another_config_lib_v3-3.8.2+1.21.1-neoforge.jar
