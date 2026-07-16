@@ -42,6 +42,8 @@ spec:
               value: Europe/Berlin
             - name: ENABLE_WHITELIST
               value: {{ .Values.whitelist | default "true" | quote }}
+            - name: REMOVE_OLD_MODS
+              value: "true"
             - name: WHITELIST
               valueFrom:
                 secretKeyRef:
