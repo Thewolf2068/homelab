@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}
+      annotations:
+        pre.hook.backup.velero.io/container: {{ .Chart.Name }}
+        pre.hook.backup.velero.io/command: '["/bin/sh", "-c", "kill -STOP $(pidof {{ .Chart.Name }}|| echo 1)"]'
+        post.hook.backup.velero.io/container: {{ .Chart.Name }}
+        post.hook.backup.velero.io/command: '["/bin/sh", "-c", "kill -CONT $(pidof {{ .Chart.Name }}|| echo 1)"]'
+    spec:
+      securityContext:
+        runAsUser: 0
+        runAsGroup: 0
+        fsGroup: 1000
+      containers:
+        - name: {{ .Chart.Name }}
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          env:
+            - Name: PUID
+              value: 1000
+            - Name: PGID
+              value: 1000
+
+          ports:
+            - containerPort: {{ .Values.port }}
+          volumeMounts:
+            - name: config
+              mountPath: /config
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: {{ .Chart.Name }}-data-pvc

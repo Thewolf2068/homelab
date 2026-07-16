@@ -103,3 +103,11 @@ syncyomi:
     tag: "v1.1.12@sha256:262993cce3ff38b96845a802432535d5898c7d623097a4c6bcf00af338c156d0"
   port: "8282"
   subdomain: "syncyomi"
+
+freshrss:
+  enabled: true
+  image:
+    repository: "lscr.io/linuxserver/freshrss"
+    tag: "1.29.1-ls313@sha256:94bdfaadb6da49acc62179a0d16de30a326601b1c5d4f439c8cfd83d24af21a8"
+  port: "80"
+  subdomain: "rss"
