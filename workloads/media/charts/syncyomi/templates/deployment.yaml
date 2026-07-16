@@ -41,6 +41,19 @@ spec:
           volumeMounts:
             - name: config
               mountPath: /config
+      initContainers:
+        - name: init-config
+          image: busybox:1.36
+          command:
+            - /bin/sh
+            - -c
+            - |
+              if [ -f /config/config.toml ]; then
+                sed -i 's/^host = "127\.0\.0\.1"/host = "0.0.0.0"/' /config/config.toml
+              fi
+          volumeMounts:
+            - name: config
+              mountPath: /config
       volumes:
         - name: config
           persistentVolumeClaim:
