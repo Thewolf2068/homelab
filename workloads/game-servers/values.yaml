@@ -29,7 +29,7 @@ minecraft-modded:
   image:
     repository: "ghcr.io/itzg/minecraft-server"
     tag: "2026.6.1@sha256:2a3ed0997720d79b7ed783a79e43143358b2e60d27daf15c2b1d27b59d04a6d8"
-  port: "25565"
+  port: "25575"
   subdomain: "modded"
   type: "NEOFORGE"
   version: "1.21.1"
