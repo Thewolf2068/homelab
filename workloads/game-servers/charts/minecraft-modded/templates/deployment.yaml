@@ -14,6 +14,7 @@ spec:
       labels:
         app: {{ .Chart.Name }}
       annotations:
+        checksum/mods-list: {{ include (print $.Template.BasePath "/modlist.yaml") . | sha256sum }}
         pre.hook.backup.velero.io/container: {{ .Chart.Name }}
         pre.hook.backup.velero.io/command: '["/bin/sh", "-c", "kill -STOP $(pidof java || echo 1)"]'
         post.hook.backup.velero.io/container: {{ .Chart.Name }}
