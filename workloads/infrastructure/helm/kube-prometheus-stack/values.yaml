@@ -28,7 +28,7 @@ prometheus:
           accessModes: ["ReadWriteOnce"]
           resources:
             requests:
-              storage: 20Gi
+              storage: 3Gi
     # let ServiceMonitors/PodMonitors from any namespace (media, game-servers, etc.) be picked up,
     # not just ones matching this release's own labels
     serviceMonitorSelectorNilUsesHelmValues: false
