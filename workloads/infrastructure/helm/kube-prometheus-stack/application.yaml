@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kube-prometheus-stack
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  project: default
+  sources:
+    - repoURL: https://prometheus-community.github.io/helm-charts
+      chart: kube-prometheus-stack
+      targetRevision: "86.2.3"
+      helm:
+        releaseName: kube-prometheus-stack
+        valueFiles:
+          - $repo/workloads/infrastructure/helm/kube-prometheus-stack/values.yaml
+
+    - repoURL: 'https://github.com/Thewolf2068/homelab.git'
+      targetRevision: HEAD
+      path: workloads/infrastructure/helm/kube-prometheus-stack/manifests
+      ref: repo
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: infrastructure
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true   # same reasoning as ESO — CRDs exceed the client-side annotation limit
