@@ -1,17 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: workloads-app
+  name: infrastructure
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   project: default
   source:
     repoURL: 'https://github.com/Thewolf2068/homelab.git'
     targetRevision: HEAD
-    path: argocd-apps/workloads
+    path: workloads/infrastructure
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: argocd
+    namespace: infrastructure
   syncPolicy:
     automated:
       prune: true
