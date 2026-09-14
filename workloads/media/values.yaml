@@ -20,7 +20,7 @@ prowlarr:
   enabled: true
   image:
     repository: "ghcr.io/home-operations/prowlarr"
-    tag: "2.5.0.5422@sha256:91aad3d438568387d0731fd2b812d1812cf15c3738c7eedca60c04186f35fd5d"
+    tag: "2.6.4.5611@sha256:faf8a9674e24fb4178c8c8ce14231ea7ab0c348b3207d2c2a4f4a0c9c9781047"
   port: "9696"
   subdomain: "prowlarr"
 
