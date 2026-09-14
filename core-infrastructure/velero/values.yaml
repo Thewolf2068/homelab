@@ -32,7 +32,7 @@ upgradeCRDs: false
 kubectl:
   image:
     repository: alpine/kubectl
-    tag: 1.36.2@sha256:03f27b659dbbc2fb36b188dc5b4b4d83228616d164dbf1b2f8f0435b9c6a0ee9
+    tag: 1.36.2@sha256:9b053116c5c9b746e466230ea3b8bd381757064ee483e236dbadcf7f798f73cf
 
 schedules:
   media-pvc-backup:
