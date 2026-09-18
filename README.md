@@ -1,69 +1,58 @@
 ## Structure
 
-**Control Plane**: 1x 3gb ram, 1 Ampere Core, 50gb storage
+**Nodes**: 3x hybrid control-plane/worker (Ampere A1, Oracle Cloud free tier)
 
-**Worker Nodes**: 3x 7gb RAM, 1 Ampere Core, 50gb storage
+- 2x 1 OCPU, 8GB RAM, 66GB storage
+- 1x 2 OCPU, 8GB RAM, 66GB storage
 
 **OS:**  Talos 1.13.4 (latest)
+
+**Storage:** LINSTOR (Piraeus Operator) on DRBD, 3 replicas (one per node).
 
 **Talhelper config**:
 
 ```yaml
 clusterName: homelab-cluster
-talosVersion: v1.13.4
+talosVersion: v1.14.0
 kubernetesVersion: 1.36.1
-endpoint: ${CONTROL_PLANE_IP} # or ${VIP_CONTROL_PLANE_IP}
+endpoint: ${NODE_1_IP} # or ${VIP}
 
 additionalMachineCertSans:
-  - ${CONTROL_PLANE_1_IP}
-  - ${WORKER_NODE_1_IP}
-  - ${WORKER_NODE_2_IP}
-  - ${WORKER_NODE_3_IP}
+  - ${NODE_1_IP}
+  - ${NODE_2_IP}
+  - ${NODE_3_IP}
 additionalApiServerCertSans:
-  - ${CONTROL_PLANE_1_IP}
-  - ${WORKER_NODE_1_IP}
-  - ${WORKER_NODE_2_IP}
-  - ${WORKER_NODE_3_IP}
+  - ${NODE_1_IP}
+  - ${NODE_2_IP}
+  - ${NODE_3_IP}
 
 nodes:
-  - hostname: controlplane-1
-    ipAddress: ${CONTROL_PLANE_1_IP} installDisk: /dev/sda
+  - hostname: node-1
+    ipAddress: ${NODE_1_IP}
+    installDisk: /dev/sda
     controlPlane: true
-    machineType: controlplane
-    
-  - hostname: worker-1
-    ipAddress: ${WORKER_NODE_1_IP}
-    installDisk: /dev/sda
-    controlPlane: false
-    machineType: worker
-    
-  - hostname: worker-2
-    ipAddress: ${WORKER_NODE_2_IP}
-    installDisk: /dev/sda
-    controlPlane: false
-    machineType: worker
-    
-  - hostname: worker-3
-    ipAddress: ${WORKER_NODE_3_IP}
-    installDisk: /dev/sda
-    controlPlane: false
-    machineType: worker
 
-# This is for longhorn support
-worker:
-  patches:
-    - |-
-      machine:
-        kubelet:
-          extraMounts:
-            - destination: /var/lib/longhorn
-              type: bind
-              source: /var/lib/longhorn
-              options:
-                - bind
-                - rshared
-                - rw
+  - hostname: node-2
+    ipAddress: ${NODE_2_IP}
+    installDisk: /dev/sda
+    controlPlane: true
+
+  - hostname: node-3
+    ipAddress: ${NODE_3_IP}
+    installDisk: /dev/sda
+    controlPlane: true
 ```
+
+> **DRBD on Talos**: LINSTOR requires the `drbd` kernel module, which Talos does not ship by default. Build an install image that includes the `drbd` system extension via [Talos Factory](https://factory.talos.dev), then add the kernel modules to the machine config:
+>
+> ```yaml
+> machine:
+>   kernel:
+>     modules:
+>       - name: drbd
+>         parameters: [usermode_helper=disabled]
+>       - name: drbd_transport_tcp
+> ```
 
 ## Initial Setup
 
@@ -196,8 +185,9 @@ kubectl apply -f root-app.yaml
 
 This will deploy all of the infrastructure, includign but not limited to
 
-- Longhorn
-- Velero
+- LINSTOR (Piraeus Operator / DRBD)
+- Snapshot Controller (CSI)
+- Velero (CSI snapshot data movement)
 - SMB-CSI Driver
 - Traefik
 - Cert-Manager
@@ -208,7 +198,7 @@ Go check in the WebUI for when those are all healthy. Might take a minute or two
 
 ## (Optional) Restore Backup
 
-I use velero to back up all of my service storage. So for jellyfin, arr stack, etc. To restore that, install the velero cli from your preferred package manager. After that, run
+Velero backs up service storage (jellyfin, arr stack config, etc.) using CSI volume snapshots that are moved to S3 (Cloudflare R2). Media files themselves live on the Hetzner Storage Box (SMB) and are not included. To restore, install the velero cli from your preferred package manager, then run
 
 ```shell
 velero get backups
@@ -220,7 +210,7 @@ This should give you a list of all backups saved to S3 storage. Just pick the na
 velero restore create ${RESTORE_NAME} --from-backup ${BACKUP_NAME}
 ```
 
-That's it.
+That's it. The volume data is restored from the CSI snapshots stored in R2.
 
 
 ## Bootstrap workloads

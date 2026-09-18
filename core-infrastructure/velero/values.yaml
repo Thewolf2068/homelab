@@ -1,5 +1,4 @@
 configuration:
-  defaultVolumesToFsBackup: true
   backupStorageLocation:
     - name: default
       provider: velero.io/aws
@@ -8,11 +7,19 @@ configuration:
         region: auto
         s3ForcePathStyle: true
         s3Url: https://ba7af738ac3fcf781135c6b598a7f096.r2.cloudflarestorage.com
-  volumeSnapshotLocation: []
+  volumeSnapshotLocation:
+    - name: default
+      provider: linstor.csi.linbit.com
+  defaultSnapshotMoveData: true
 
 initContainers:
   - name: velero-plugin-for-aws
     image: velero/velero-plugin-for-aws:v1.14.2@sha256:0751144c1c8e52d52c48717fbd13ad5a3061e612ae4d7ad744a946cd5b139d1a
+    volumeMounts:
+      - mountPath: /target
+        name: plugins
+  - name: velero-plugin-for-csi
+    image: velero/velero-plugin-for-csi:v0.7.1
     volumeMounts:
       - mountPath: /target
         name: plugins
@@ -44,9 +51,7 @@ schedules:
       includedResources:
         - persistentvolumeclaims
         - persistentvolumes
-        - pods
-      
+      snapshotMoveData: true
       resourcePolicy:
         kind: configmap
-        name: longhorn-volume-policy
-
+        name: piraeus-volume-policy

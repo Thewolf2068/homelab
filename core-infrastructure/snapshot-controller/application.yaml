@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: snapshot-controller
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-4"
+spec:
+  project: default
+  sources:
+    - repoURL: 'https://github.com/kubernetes-csi/external-snapshotter'
+      targetRevision: v8.6.0
+      path: client/config/crd
+    - repoURL: 'https://github.com/kubernetes-csi/external-snapshotter'
+      targetRevision: v8.6.0
+      path: deploy/kubernetes/snapshot-controller
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: kube-system
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true

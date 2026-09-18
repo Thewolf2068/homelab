@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: piraeus-cluster
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/Thewolf2068/homelab.git'
+    targetRevision: HEAD
+    path: core-infrastructure/piraeus-cluster/manifests
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: piraeus-datastore
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true

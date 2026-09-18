@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: longhorn-app
+  name: piraeus
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "0"
@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: 'https://github.com/Thewolf2068/homelab.git'
     targetRevision: HEAD
-    path: core-infrastructure/longhorn
+    path: core-infrastructure/piraeus
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: argocd
