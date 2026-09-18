@@ -7,7 +7,7 @@
 
 **OS:**  Talos 1.14.0 (latest)
 
-**Storage:** Longhorn, 3 replicas (one per node).
+**Storage:** Longhorn, 2 replicas.
 
 [**Talhelper config**](talconfig.yaml)
 
