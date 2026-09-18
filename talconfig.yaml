@@ -1,0 +1,30 @@
+clusterName: homelab-cluster
+talosVersion: v1.14.0
+kubernetesVersion: 1.36.1
+endpoint: https://${NODE_1_IP}:6443
+allowSchedulingOnControlPlanes: true
+
+additionalMachineCertSans:
+  - ${NODE_1_IP}
+  - ${NODE_2_IP}
+  - ${NODE_3_IP}
+additionalApiServerCertSans:
+  - ${NODE_1_IP}
+  - ${NODE_2_IP}
+  - ${NODE_3_IP}
+
+nodes:
+  - hostname: node-1
+    ipAddress: ${NODE_1_IP}
+    installDisk: /dev/sda
+    controlPlane: true
+
+  - hostname: node-2
+    ipAddress: ${NODE_2_IP}
+    installDisk: /dev/sda
+    controlPlane: true
+
+  - hostname: node-3
+    ipAddress: ${NODE_3_IP}
+    installDisk: /dev/sda
+    controlPlane: true

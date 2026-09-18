@@ -5,43 +5,14 @@
 - 2x 1 OCPU, 8GB RAM, 66GB storage
 - 1x 2 OCPU, 8GB RAM, 66GB storage
 
-**OS:**  Talos 1.13.4 (latest)
+**OS:**  Talos 1.14.0 (latest)
 
 **Storage:** LINSTOR (Piraeus Operator) on DRBD, 3 replicas (one per node).
 
-**Talhelper config**:
+[**Talhelper config**](talconfig.yaml)
 
-```yaml
-clusterName: homelab-cluster
-talosVersion: v1.14.0
-kubernetesVersion: 1.36.1
-endpoint: ${NODE_1_IP} # or ${VIP}
 
-additionalMachineCertSans:
-  - ${NODE_1_IP}
-  - ${NODE_2_IP}
-  - ${NODE_3_IP}
-additionalApiServerCertSans:
-  - ${NODE_1_IP}
-  - ${NODE_2_IP}
-  - ${NODE_3_IP}
 
-nodes:
-  - hostname: node-1
-    ipAddress: ${NODE_1_IP}
-    installDisk: /dev/sda
-    controlPlane: true
-
-  - hostname: node-2
-    ipAddress: ${NODE_2_IP}
-    installDisk: /dev/sda
-    controlPlane: true
-
-  - hostname: node-3
-    ipAddress: ${NODE_3_IP}
-    installDisk: /dev/sda
-    controlPlane: true
-```
 
 > **DRBD on Talos**: LINSTOR requires the `drbd` kernel module, which Talos does not ship by default. Build an install image that includes the `drbd` system extension via [Talos Factory](https://factory.talos.dev), then add the kernel modules to the machine config:
 >
@@ -67,7 +38,7 @@ talhelper genconfig
 After generating the config files for the instances, you need to apply them using
 
 ```shell
-talosctl apply-config --insecure -n ${NODE_IP}
+talosctl apply-config --insecure -n ${NODE_IP} -f generated_config
 ```
 
 The endpoint is already declared in the config file, so you don't need the -e flag. Same for the talosconfig file containing the certs. That's why talhelper is good here.
@@ -90,40 +61,33 @@ talosctl kubeconfig --nodes ${CONTROL_PLANE_IP} --talosconfig talosconfig -e ${C
 To check that everything works, now run
 
 ```shell
-export KUBECONFIG=$PWD/kubeconfig
+export KUBECONFIG=~/.kube/config
 kubectl get nodes
 ```
 
 You should see something like this:
 
 ```shell
-NAME             STATUS   ROLES           AGE   VERSION
-controlplane-1   Ready    control-plane   22m   v1.36.1
-worker-1         Ready    <none>          22m   v1.36.1
-worker-2         Ready    <none>          22m   v1.36.1
-worker-3         Ready    <none>          22m   v1.36.1
+NAME     STATUS   ROLES           AGE     VERSION
+node-1   Ready    control-plane   8m5s    v1.36.1
+node-2   Ready    control-plane   8m13s   v1.36.1
+node-3   Ready    control-plane   8m33s   v1.36.1
 ```
 
 
-## **Bootstrap Sealed Secrets key**
-
-**THE KEY IS BACKED UP TO PROTON DRIVE**
+## **Bootstrap ESO key**
 
 It looks like this
 
 ```yaml
-~/homelab/talos-cluster 󰴈 ❯ cat -p sealing-key.yaml
 apiVersion: v1
 kind: Secret
 metadata:
-  name: sealed-secrets-key4wm2z
+  name: onepassword-service-account-token
   namespace: kube-system
-  labels:
-    sealedsecrets.bitnami.com/sealed-secrets-key: active
-type: kubernetes.io/tls
-data:
-  tls.crt: SECRET
-  tls.key: SECRET
+type: Opaque
+stringData:
+  token: ops_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ```
 
  You apply it using
