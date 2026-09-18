@@ -120,8 +120,13 @@ After that, you need to install ArgoCD. To make this as idiot-proof as possible 
 ```shell
 git clone https://github.com/Thewolf2068/homelab.git
 cd homelab
-kubectl apply -k bootstrap/argocd/
+kubectl apply --server-side -k bootstrap/argocd/
 ```
+
+> **Note:** `--server-side` is required. The ApplicationSet CRD is larger than the 256 KB
+> `kubectl.kubernetes.io/last-applied-configuration` annotation limit, so a plain client-side
+> `kubectl apply` skips it and the `argocd-applicationset-controller` crash-loops with
+> `no matches for kind "ApplicationSet"`.
 
 That will install ArgoCD to the argocd namespace. To access the WebUI, you can run
 
