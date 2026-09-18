@@ -18,13 +18,28 @@ nodes:
     ipAddress: ${NODE_1_IP}
     installDisk: /dev/sda
     controlPlane: true
+    kernelModules:
+      - name: drbd
+        parameters:
+          - usermode_helper=disabled
+      - name: drbd_transport_tcp
 
   - hostname: node-2
     ipAddress: ${NODE_2_IP}
     installDisk: /dev/sda
     controlPlane: true
+    kernelModules:
+      - name: drbd
+        parameters:
+          - usermode_helper=disabled
+      - name: drbd_transport_tcp
 
   - hostname: node-3
     ipAddress: ${NODE_3_IP}
     installDisk: /dev/sda
     controlPlane: true
+    kernelModules:
+      - name: drbd
+        parameters:
+          - usermode_helper=disabled
+      - name: drbd_transport_tcp

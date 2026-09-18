@@ -14,16 +14,22 @@
 
 
 
-> **DRBD on Talos**: LINSTOR requires the `drbd` kernel module, which Talos does not ship by default. Build an install image that includes the `drbd` system extension via [Talos Factory](https://factory.talos.dev), then add the kernel modules to the machine config:
+> **DRBD on Talos**: LINSTOR requires the `drbd` kernel module, which Talos does not ship by default. Build an install image that includes the `drbd` system extension via [Talos Factory](https://factory.talos.dev), then declare the kernel modules in `talconfig.yaml` so talhelper emits the `KernelModuleConfig` documents:
 >
 > ```yaml
-> machine:
->   kernel:
->     modules:
+> nodes:
+>   - hostname: node-1
+>     ipAddress: ${NODE_1_IP}
+>     installDisk: /dev/sda
+>     controlPlane: true
+>     kernelModules:
 >       - name: drbd
->         parameters: [usermode_helper=disabled]
+>         parameters:
+>           - usermode_helper=disabled
 >       - name: drbd_transport_tcp
 > ```
+>
+> Applying the config loads newly-added modules immediately (`talosctl apply-config`, no reboot needed). A reboot is only required to *remove* a module or change the parameters of one that is already loaded.
 
 ## Initial Setup
 
