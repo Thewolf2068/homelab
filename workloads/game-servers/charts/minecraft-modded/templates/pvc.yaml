@@ -5,7 +5,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: linstor
+  storageClassName: longhorn
   resources:
     requests:
       storage: {{ .Values.storageSize | default "10Gi" }}

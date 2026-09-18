@@ -9,7 +9,7 @@ grafana:
     passwordKey: admin-password
   persistence:
     enabled: true
-    storageClassName: linstor
+    storageClassName: longhorn
     size: 2Gi
   sidecar:
     dashboards:
@@ -24,7 +24,7 @@ prometheus:
     storageSpec:
       volumeClaimTemplate:
         spec:
-          storageClassName: linstor
+          storageClassName: longhorn
           accessModes: ["ReadWriteOnce"]
           resources:
             requests:
@@ -41,7 +41,7 @@ alertmanager:
     storage:
       volumeClaimTemplate:
         spec:
-          storageClassName: linstor
+          storageClassName: longhorn
           accessModes: ["ReadWriteOnce"]
           resources:
             requests:

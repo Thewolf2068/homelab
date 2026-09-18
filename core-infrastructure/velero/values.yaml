@@ -9,7 +9,7 @@ configuration:
         s3Url: https://ba7af738ac3fcf781135c6b598a7f096.r2.cloudflarestorage.com
   volumeSnapshotLocation:
     - name: default
-      provider: linstor.csi.linbit.com
+      provider: driver.longhorn.io
   defaultSnapshotMoveData: true
 
 initContainers:
@@ -49,4 +49,4 @@ schedules:
       snapshotMoveData: true
       resourcePolicy:
         kind: configmap
-        name: piraeus-volume-policy
+        name: longhorn-volume-policy

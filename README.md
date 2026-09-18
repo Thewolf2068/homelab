@@ -7,29 +7,14 @@
 
 **OS:**  Talos 1.14.0 (latest)
 
-**Storage:** LINSTOR (Piraeus Operator) on DRBD, 3 replicas (one per node).
+**Storage:** Longhorn, 3 replicas (one per node).
 
 [**Talhelper config**](talconfig.yaml)
 
 
 
 
-> **DRBD on Talos**: LINSTOR requires the `drbd` kernel module, which Talos does not ship by default. Build an install image that includes the `drbd` system extension via [Talos Factory](https://factory.talos.dev), then declare the kernel modules in `talconfig.yaml` so talhelper emits the `KernelModuleConfig` documents:
->
-> ```yaml
-> nodes:
->   - hostname: node-1
->     ipAddress: ${NODE_1_IP}
->     installDisk: /dev/sda
->     controlPlane: true
->     kernelModules:
->       - name: drbd
->         parameters:
->           - usermode_helper=disabled
->       - name: drbd_transport_tcp
-> ```
->
-> Applying the config loads newly-added modules immediately (`talosctl apply-config`, no reboot needed). A reboot is only required to *remove* a module or change the parameters of one that is already loaded.
+> **Longhorn on Talos**: Longhorn runs entirely in user-space (no kernel modules to load). It only needs two official Talos system extensions — `siderolabs/iscsi-tools` and `siderolabs/util-linux-tools` — which are declared in `talconfig.yaml` via the `schematic` block, so `talhelper genconfig` builds the installer image with them baked in. Longhorn itself is deployed by ArgoCD like the rest of the infrastructure; there's nothing extra to install.
 
 ## Initial Setup
 
@@ -160,7 +145,7 @@ kubectl apply -f root-app.yaml
 
 This will deploy all of the infrastructure, includign but not limited to
 
-- LINSTOR (Piraeus Operator / DRBD)
+- Longhorn
 - Snapshot Controller (CSI)
 - Velero (CSI snapshot data movement)
 - SMB-CSI Driver

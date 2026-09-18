@@ -1,0 +1,7 @@
+persistence:
+  # We define our own StorageClass in manifests, so don't create the default one.
+  defaultClass: false
+
+defaultSettings:
+  defaultDataPath: /var/lib/longhorn
+  defaultReplicaCount: "3"

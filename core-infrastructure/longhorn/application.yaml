@@ -1,26 +1,27 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: piraeus
+  name: longhorn
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "0"
 spec:
   project: default
   sources:
-    - repoURL: 'ghcr.io/piraeusdatastore/piraeus-operator'
-      targetRevision: 2.11.0
-      chart: piraeus
+    - repoURL: 'https://charts.longhorn.io'
+      chart: longhorn
+      targetRevision: 1.8.1
       helm:
-        releaseName: piraeus-operator
-        valuesObject:
-          installCRDs: true
+        releaseName: longhorn
+        valueFiles:
+          - $repo/core-infrastructure/longhorn/values.yaml
     - repoURL: 'https://github.com/Thewolf2068/homelab.git'
       targetRevision: HEAD
-      path: core-infrastructure/piraeus/manifests
+      path: core-infrastructure/longhorn/manifests
+      ref: repo
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: piraeus-datastore
+    namespace: longhorn-system
   syncPolicy:
     automated:
       selfHeal: true
