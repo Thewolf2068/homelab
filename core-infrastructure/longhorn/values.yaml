@@ -2,6 +2,12 @@ persistence:
   # We define our own StorageClass in manifests, so don't create the default one.
   defaultClass: false
 
+preUpgradeChecker:
+  # The chart's pre-upgrade Job is mapped to an ArgoCD PreSync hook, which runs
+  # before the ServiceAccount/RBAC it needs exist on a fresh install, so it hangs
+  # and fails the whole sync. Longhorn recommends disabling it for GitOps.
+  jobEnabled: false
+
 defaultSettings:
   defaultDataPath: /var/lib/longhorn
   defaultReplicaCount: "2"
