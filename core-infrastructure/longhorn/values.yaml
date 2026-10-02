@@ -1,6 +1,7 @@
 persistence:
-  # We define our own StorageClass in manifests, so don't create the default one.
+  # The chart provides the `longhorn` StorageClass; don't mark it as cluster default.
   defaultClass: false
+  defaultClassReplicaCount: 2
 
 preUpgradeChecker:
   # The chart's pre-upgrade Job is mapped to an ArgoCD PreSync hook, which runs
@@ -9,9 +10,7 @@ preUpgradeChecker:
   jobEnabled: false
 
 defaultSettings:
-  defaultDataPath: /var/lib/longhorn
+  # Store replicas on the dedicated Talos user volume mounted at /var/mnt/longhorn
+  # (see talconfig.yaml), not the small /var/lib/longhorn system/ephemeral partition.
+  defaultDataPath: /var/mnt/longhorn
   defaultReplicaCount: "2"
-
-persistence:
-  defaultClass: false
-  defaultClassReplicaCount: 2
