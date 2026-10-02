@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}
+    spec:
+      enableServiceLinks: false
+      terminationGracePeriodSeconds: 60
+      containers:
+        - name: {{ .Chart.Name }}
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          ports:
+            - containerPort: {{ .Values.port }}
+          env:
+            - name: PUID
+              value: {{ .Values.global.securityContext.runAsUser | quote }}
+            - name: PGID
+              value: {{ .Values.global.securityContext.runAsGroup | quote }}
+            - name: TZ
+              value: Europe/Berlin
+          envFrom:
+            - secretRef:
+                name: {{ .Chart.Name }}-auth
+          # Only if the GUI/QtWebEngine crashes under the runtime-default seccomp profile.
+          # Note: PodSecurity "baseline" (Talos default) forbids this, see notes.
+          # securityContext:
+          #   seccompProfile:
+          #     type: Unconfined
+          resources:
+            requests:
+              cpu: 100m
+              memory: 512Mi
+            limits:
+              memory: 2Gi
+          volumeMounts:
+            - name: config
+              mountPath: /config
+            - name: shm
+              mountPath: /dev/shm
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: {{ .Chart.Name }}-data-pvc
+        - name: shm
+          emptyDir:
+            medium: Memory
+            sizeLimit: 1Gi
