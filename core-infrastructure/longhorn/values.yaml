@@ -11,3 +11,7 @@ preUpgradeChecker:
 defaultSettings:
   defaultDataPath: /var/lib/longhorn
   defaultReplicaCount: "2"
+
+persistence:
+  defaultClass: false
+  defaultClassReplicaCount: 2
