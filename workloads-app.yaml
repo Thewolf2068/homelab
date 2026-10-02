@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: 'https://github.com/Thewolf2068/homelab.git'
     targetRevision: HEAD
-    path: argocd-apps/workloads/media
+    path: argocd-apps/workloads
     directory:
       recurse: true
   destination:
