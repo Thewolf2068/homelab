@@ -39,6 +39,10 @@ spec:
                 secretKeyRef:
                   name: navidrome-lastfm
                   key: shared-secret
+            - name: ND_CACHEFOLDER
+              value: "/data/cache" 
+            - name: ND_DATAFOLDER
+              value: "/data"
           volumeMounts:
             - name: data
               mountPath: /data
