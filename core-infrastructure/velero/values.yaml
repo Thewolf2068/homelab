@@ -1,4 +1,5 @@
 configuration:
+  features: EnableCSI
   backupStorageLocation:
     - name: default
       provider: velero.io/aws
@@ -7,9 +8,6 @@ configuration:
         region: auto
         s3ForcePathStyle: true
         s3Url: https://ba7af738ac3fcf781135c6b598a7f096.r2.cloudflarestorage.com
-  volumeSnapshotLocation:
-    - name: default
-      provider: driver.longhorn.io
   defaultSnapshotMoveData: true
 
 initContainers:
