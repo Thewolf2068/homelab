@@ -12,7 +12,7 @@ navidrome:
   enabled: true
   image:
     repository: "deluan/navidrome"
-    tag: "0.64.0@sha256:a384948b81bd1529986c5960169e7fc4fa00f46bde6bd517971a4c36671db2af"
+    tag: "0.64.2@sha256:38dc2727bfcfd5ede290f8ada114fc90368146f265ae4701ddddbcbe2a44ee52"
   port: "4533"
   subdomain: "navidrome"
 
@@ -20,7 +20,7 @@ prowlarr:
   enabled: true
   image:
     repository: "ghcr.io/home-operations/prowlarr"
-    tag: "2.6.4.5611@sha256:faf8a9674e24fb4178c8c8ce14231ea7ab0c348b3207d2c2a4f4a0c9c9781047"
+    tag: "2.6.5.5623@sha256:6ec8808a8c8fc5c53928d01ac6acbfb0a3f87054aa438e31de9d300b39b446f5"
   port: "9696"
   subdomain: "prowlarr"
 
@@ -44,7 +44,7 @@ radarr:
   enabled: true
   image:
     repository: "ghcr.io/home-operations/radarr"
-    tag: "6.4.3.10645@sha256:0ebb4ae26ee9522674a4ad1855e926fd6b97c534ff982644c9c9a87bca740077"
+    tag: "6.4.4.10685@sha256:be53998a2d39cfa3c3315b70c7509a6a1f2a10c3aee9337653efc9f4c970430e"
   port: "7878"
   subdomain: "radarr"
 
@@ -52,7 +52,7 @@ radarr-anime:
   enabled: true
   image:
     repository: "ghcr.io/home-operations/radarr"
-    tag: "6.4.3.10645@sha256:0ebb4ae26ee9522674a4ad1855e926fd6b97c534ff982644c9c9a87bca740077"
+    tag: "6.4.4.10685@sha256:be53998a2d39cfa3c3315b70c7509a6a1f2a10c3aee9337653efc9f4c970430e"
   port: "7878"
   subdomain: "radarr-anime"
 
@@ -76,7 +76,7 @@ qbittorrent:
   enabled: true
   image:
     repository: "ghcr.io/home-operations/qbittorrent"
-    tag: "5.2.3@sha256:4fcf15b7f265c2c8d7bc2a7e13240a07e0593c326f3cf3b5b9bb69eec5b79299"
+    tag: "5.2.4@sha256:9307627e03981d5473aa31175ea76ed56ea3752333ca49d601b6af45e281e7ba"
   port: "8080"
   subdomain: "qbittorrent"
 
@@ -84,7 +84,7 @@ seerr:
   enabled: true
   image:
     repository: "ghcr.io/seerr-team/seerr"
-    tag: "v3.3.0@sha256:c92d2dc117f62185e7bcb88cd56efd374ea79210eaf433275449e8d5988eb5a8"
+    tag: "v3.5.0@sha256:27602401178d54f1964442287b9f23f67a3fa2252645ee8065839ea1c3f69e45"
   port: "5055"
   subdomain: "seerr"
 
@@ -92,7 +92,7 @@ maintainerr:
   enabled: true
   image:
     repository: "ghcr.io/maintainerr/maintainerr"
-    tag: "3.16.0@sha256:0829781eb442f93065edda051d4a87f343a1cf05f7ea03635e87306fc786f087"
+    tag: "3.30.0@sha256:908af0b22c61f4908633fa4819e615a1e12e1aafe6c860375686bf18b1723525"
   port: "6246"
   subdomain: "maintainerr"
 
@@ -100,7 +100,7 @@ syncyomi:
   enabled: true
   image:
     repository: "ghcr.io/syncyomi/syncyomi"
-    tag: "v1.1.12@sha256:262993cce3ff38b96845a802432535d5898c7d623097a4c6bcf00af338c156d0"
+    tag: "v1.5.8@sha256:2d54fcff1d3fc5b05aee514c6fc1c8a66d6346038ff838192ed480348b2fd961"
   port: "8282"
   subdomain: "syncyomi"
 

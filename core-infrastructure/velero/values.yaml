@@ -14,7 +14,7 @@ configuration:
 
 initContainers:
   - name: velero-plugin-for-aws
-    image: velero/velero-plugin-for-aws:v1.14.2@sha256:0751144c1c8e52d52c48717fbd13ad5a3061e612ae4d7ad744a946cd5b139d1a
+    image: velero/velero-plugin-for-aws:v1.14.4@sha256:c85a7fa803569e3128c33e4f5766f84ab156c8d171c9f1dd2715581d45ce98fa
     volumeMounts:
       - mountPath: /target
         name: plugins
@@ -34,7 +34,7 @@ upgradeCRDs: false
 kubectl:
   image:
     repository: alpine/kubectl
-    tag: 1.37.0@sha256:601225d448500d59d19877e8e61bb861df48bd71373067bfbdf328aa74feb46a
+    tag: 1.37.1@sha256:7b4cc9a9ce0d064cedeb85550266c11f2b32f010ca299525518646261e4d955e
 
 schedules:
   media-pvc-backup:
