@@ -47,6 +47,10 @@ spec:
               mountPath: /config
             - name: shm
               mountPath: /dev/shm
+            - name: media
+              mountPath: /media
+              subPath: media/
+              readOnly: false
       volumes:
         - name: config
           persistentVolumeClaim:
@@ -55,3 +59,6 @@ spec:
           emptyDir:
             medium: Memory
             sizeLimit: 1Gi
+        - name: media
+          persistentVolumeClaim:
+            claimName: pvc-{{ .Chart.Name }}-smb
