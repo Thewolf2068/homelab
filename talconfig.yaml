@@ -1,8 +1,10 @@
 clusterName: homelab-cluster
-talosVersion: v1.14.0
+talosVersion: v1.13.0
 kubernetesVersion: 1.36.1
 endpoint: https://${NODE_1_IP}:6443
 allowSchedulingOnControlPlanes: true
+
+talosImageURL: factory.talos.dev/installer/613e1592b2da41ae5e265e8789429f22e121aab91cb4deb6bc3c0b6262961245
 
 additionalMachineCertSans:
   - ${NODE_1_IP}
@@ -18,31 +20,69 @@ nodes:
     ipAddress: ${NODE_1_IP}
     installDisk: /dev/sda
     controlPlane: true
-    schematic:
-      customization:
-        systemExtensions:
-          officialExtensions:
-            - siderolabs/iscsi-tools
-            - siderolabs/util-linux-tools
+    volumes:
+      - name: EPHEMERAL
+        provisioning:
+          minSize: 15GB
+          maxSize: 15GB
+          grow: false
+    userVolumes:
+      - name: longhorn
+        provisioning:
+          diskSelector:
+            match: disk.dev_path == "/dev/sda"
+          grow: true
+          minSize: 1GB
 
   - hostname: node-2
     ipAddress: ${NODE_2_IP}
     installDisk: /dev/sda
     controlPlane: true
-    schematic:
-      customization:
-        systemExtensions:
-          officialExtensions:
-            - siderolabs/iscsi-tools
-            - siderolabs/util-linux-tools
+    volumes:
+      - name: EPHEMERAL
+        provisioning:
+          minSize: 15GB
+          maxSize: 15GB
+          grow: false
+    userVolumes:
+      - name: longhorn
+        provisioning:
+          diskSelector:
+            match: disk.dev_path == "/dev/sda"
+          grow: true
+          minSize: 1GB
 
   - hostname: node-3
     ipAddress: ${NODE_3_IP}
     installDisk: /dev/sda
     controlPlane: true
-    schematic:
-      customization:
-        systemExtensions:
-          officialExtensions:
-            - siderolabs/iscsi-tools
-            - siderolabs/util-linux-tools
+    volumes:
+      - name: EPHEMERAL
+        provisioning:
+          minSize: 15GB
+          maxSize: 15GB
+          grow: false
+    userVolumes:
+      - name: longhorn
+        provisioning:
+          diskSelector:
+            match: disk.dev_path == "/dev/sda"
+          grow: true
+          minSize: 1GB
+
+controlPlane:
+  patches:
+    - |-
+      machine:
+        time:
+          servers:
+            - 169.254.169.254
+        kubelet:
+          extraMounts:
+            - destination: /var/mnt/longhorn
+              type: bind
+              source: /var/mnt/longhorn
+              options:
+                - bind
+                - rshared
+                - rw
