@@ -32,7 +32,7 @@ spec:
             - name: PGID 
               value: "1000"
             - name: ORIGIN
-              value: "{{ .Values.subdomain }}.{{ .Values.global.domain }}"
+              value: "https://{{ .Values.subdomain }}.{{ .Values.global.domain }}"
 
           securityContext:
             allowPrivilegeEscalation: false
