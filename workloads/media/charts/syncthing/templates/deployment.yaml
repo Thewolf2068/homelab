@@ -40,6 +40,8 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /var/syncthing
+            - name: media
+              mountPath: /media
       volumes:
         - name: data
           persistentVolumeClaim:
