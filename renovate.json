@@ -1,3 +1,5 @@
 {
   "extends": ["config:base", "docker:pinDigests"]
+   "prHourlyLimit": 0,
+   "prConcurrentLimit": 0
 }
