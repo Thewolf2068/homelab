@@ -127,4 +127,12 @@ syncthing:
     repository: "ghcr.io/syncthing/syncthing"
     tag: "2.1.5@sha256:397aa00b92b48d65540ea3ae3cbf271b87bdccbe07a0b7bd7d2debc3a7b29138"
   port: "8384"
-  subdomain: sync
+  subdomain: "sync"
+
+profilarr:
+  enabled: true
+  image:
+    repository: "ghcr.io/dictionarry-hub/profilarr"
+    tag: "2.2.0@sha256:ddcdd0f340043c2ec0a85ca74b9a6be9be42b1c0288c75fc36a26a43f695860b"
+  port: 6868
+  subdomain: "profilarr"

@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}
+    spec:
+      securityContext:
+        runAsUser: {{ .Values.global.securityContextHomeOps.runAsUser }}
+        runAsGroup: {{ .Values.global.securityContextHomeOps.runAsGroup }}
+        fsGroup: 65534
+        fsGroupChangePolicy: OnRootMismatch
+      containers:
+        - name: {{ .Chart.Name }}
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          ports:
+            - containerPort: {{ .Values.port }}
+          env:
+            - name: TZ
+              value: "UTC"
+            - name: PUID
+              value: "1000"
+            - name: PGID 
+              value: "1000"
+            - name: ORIGIN
+              value: "{{ .Values.subdomain }}.{{ .Values.global.domain }}"
+
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: true
+          volumeMounts:
+            - name: config
+              mountPath: /config
+            - name: tmp
+              mountPath: /tmp
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: {{ .Chart.Name }}-data-pvc
+        - name: tmp
+          emptyDir: {}
