@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}
+      annotations:
+        pre.hook.backup.velero.io/container: {{ .Chart.Name }}
+        pre.hook.backup.velero.io/command: '["/bin/sh", "-c", "kill -STOP $(pidof node || echo 1)"]'
+        post.hook.backup.velero.io/container: {{ .Chart.Name }}
+        post.hook.backup.velero.io/command: '["/bin/sh", "-c", "kill -CONT $(pidof node || echo 1)"]'
+    spec:
+      # A Service named "n8n" would otherwise inject an N8N_PORT=tcp://... env var
+      enableServiceLinks: false
+      securityContext:
+        runAsUser: {{ .Values.global.securityContext.runAsUser }}
+        runAsGroup: {{ .Values.global.securityContext.runAsGroup }}
+        fsGroup: {{ .Values.global.securityContext.runAsGroup }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          ports:
+            - containerPort: {{ .Values.port }}
+          env:
+            - name: N8N_HOST
+              value: "{{ .Values.subdomain }}.{{ .Values.global.domain }}"
+            - name: N8N_PORT
+              value: {{ .Values.port | quote }}
+            - name: N8N_PROTOCOL
+              value: "https"
+            - name: WEBHOOK_URL
+              value: "https://{{ .Values.subdomain }}.{{ .Values.global.domain }}/"
+            - name: N8N_PROXY_HOPS
+              value: "1"
+            - name: NODE_ENV
+              value: "production"
+            - name: N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS
+              value: "true"
+            - name: GENERIC_TIMEZONE
+              value: Europe/Berlin
+            - name: TZ
+              value: Europe/Berlin
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              memory: 1Gi
+          volumeMounts:
+            - name: data
+              mountPath: /home/node/.n8n
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ .Chart.Name }}-data-pvc
