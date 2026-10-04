@@ -141,6 +141,6 @@ n8n:
   enabled: true
   image: 
     repository: "n8n-io/n8n"
-    tag: "v2.41.6"
+    tag: "2.41.6-amd64"
   port: 5678
   subdomain: "n8n"
