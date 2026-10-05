@@ -149,6 +149,6 @@ ntfy:
   enabled: true
   image:
     repository: "binwiederhier/ntfy"
-    tag: "v2.28"
+    tag: "v2.28@sha256:6ef4b819f722fccdc036af611c4774cfdc2de821ab74fdd48bbf4c9d6f8973da"
   port: 80
   subdomain: "ntfy"
