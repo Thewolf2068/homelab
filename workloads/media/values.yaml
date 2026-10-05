@@ -44,7 +44,7 @@ radarr:
   enabled: true
   image:
     repository: "ghcr.io/home-operations/radarr"
-    tag: "6.4.4.10685"
+    tag: "6.4.4.10685@sha256:be53998a2d39cfa3c3315b70c7509a6a1f2a10c3aee9337653efc9f4c970430e"
   port: "7878"
   subdomain: "radarr"
 
@@ -157,6 +157,6 @@ uptime-kuma:
   enabled: true
   image:
     repository: "ghcr.io/louislam/uptime-kuma"
-    tag: "2.5.5"
+    tag: "2.5.5@sha256:c74379ac4509ce2d2c2633f509e67003ee2e45b6e995c5e43fc101f45a0e1fbe"
   port: 3001
   subdomain: "uptime"
