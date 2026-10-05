@@ -125,7 +125,7 @@ syncthing:
   enabled: true
   image:
     repository: "ghcr.io/syncthing/syncthing"
-    tag: "2.1.5"
+    tag: "2.1.5@sha256:397aa00b92b48d65540ea3ae3cbf271b87bdccbe07a0b7bd7d2debc3a7b29138"
   port: "8384"
   subdomain: "sync"
 
