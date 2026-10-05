@@ -148,7 +148,7 @@ n8n:
 ntfy:
   enabled: true
   image:
-    repository: "ghcr.io/binwiederhier/ntfy"
+    repository: "binwiederhier/ntfy"
     tag: "v2.28"
   port: 80
   subdomain: "ntfy"
