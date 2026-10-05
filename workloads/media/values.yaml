@@ -125,7 +125,7 @@ syncthing:
   enabled: true
   image:
     repository: "ghcr.io/syncthing/syncthing"
-    tag: "2.1.5"
+    tag: "2.1.5@sha256:397aa00b92b48d65540ea3ae3cbf271b87bdccbe07a0b7bd7d2debc3a7b29138"
   port: "8384"
   subdomain: "sync"
 
@@ -141,7 +141,7 @@ n8n:
   enabled: true
   image: 
     repository: "ghcr.io/n8n-io/n8n"
-    tag: "2.42.2@sha256:4867554ea7e90d996debeed6cdcdae676e66d949dbd0a05176b87792843d59f5"
+    tag: "2.42.3@sha256:240eaa2a3d491adac5817aa4c3f1c521bb18ec79f6e448517158d5220ee0f37b"
   port: 5678
   subdomain: "n8n"
 
