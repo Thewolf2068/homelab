@@ -24,3 +24,18 @@ providers:
   kubernetesCRD:
     enabled: true
     allowCrossNamespace: true
+
+# Prevent traefik from choking up when something is being downloaded
+affinity:
+  podAntiAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      - topologyKey: kubernetes.io/hostname
+        namespaces:
+          - media
+        labelSelector:
+          matchExpressions:
+            - key: app
+              operator: In
+              values:
+                - sabnzbd
+                - qbittorrent
