@@ -1,7 +1,6 @@
 {
   "extends": ["config:recommended", "docker:pinDigests"],
   "timezone": "Europe/Berlin",
-  "minimumReleaseAge": "3 days",
   "prHourlyLimit": 0,
   "prConcurrentLimit": 0,
   "packageRules": [
