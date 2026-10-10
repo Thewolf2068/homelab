@@ -1,5 +1,19 @@
 {
-  "extends": ["config:base", "docker:pinDigests"],
-   "prHourlyLimit": 0,
-   "prConcurrentLimit": 0
+  "extends": ["config:recommended", "docker:pinDigests"],
+  "timezone": "Europe/Berlin",
+  "minimumReleaseAge": "3 days",
+  "prHourlyLimit": 0,
+  "prConcurrentLimit": 0,
+  "packageRules": [
+    {
+      "matchFileNames": ["workloads/**"],
+      "matchUpdateTypes": ["minor", "patch", "digest", "pin", "pinDigest"],
+      "automerge": true,
+      "automergeSchedule": ["after 4am and before 7am"]
+    },
+    {
+      "matchUpdateTypes": ["major"],
+      "automerge": false
+    }
+  ]
 }
