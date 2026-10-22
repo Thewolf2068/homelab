@@ -93,7 +93,7 @@ syncyomi:
   enabled: true
   image:
     repository: "ghcr.io/syncyomi/syncyomi"
-    tag: "v1.6.0@sha256:0fc4436beb54ecd6af2fcb382468adbf413cf68690ed6e454763623626d56c3e"
+    tag: "v1.7.2@sha256:68edcc4c5ad527f43447f79ac76e081c1c0031861b8b103164b110e0effea439"
   port: "8282"
   subdomain: "syncyomi"
 
