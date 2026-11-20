@@ -134,7 +134,7 @@ n8n:
   enabled: true
   image: 
     repository: "ghcr.io/n8n-io/n8n"
-    tag: "2.43.3@sha256:d4eca183959b30fb1ba5ecda7e58363c5be49a7bcf8c0227a6384a47ce2f7a65"
+    tag: "2.49.3@sha256:69f3d3694b42992d7cce232b7ba46f22205e39d5eb61bd235588e4d5d111d8c4"
   port: 5678
   subdomain: "n8n"
 
