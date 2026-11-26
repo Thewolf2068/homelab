@@ -15,7 +15,7 @@ minecraft-vanilla:
   enabled: true
   image:
     repository: "ghcr.io/itzg/minecraft-server"
-    tag: "2026.10.0@sha256:5a2ab74ae179c11e2dbbce67f307cdcf2c1257b3abb0f654d3a310b3d8ea57da"
+    tag: "2026.11.1@sha256:0634ff76eee896c7e9760a35117d24fad394857d10bc8c1d9bc7f7ff7deef3c2"
   port: "25565"
   subdomain: "vanilla"
   type: "VANILLA"
@@ -28,7 +28,7 @@ minecraft-modded:
   enabled: true
   image:
     repository: "ghcr.io/itzg/minecraft-server"
-    tag: "2026.10.0@sha256:5a2ab74ae179c11e2dbbce67f307cdcf2c1257b3abb0f654d3a310b3d8ea57da"
+    tag: "2026.11.1@sha256:0634ff76eee896c7e9760a35117d24fad394857d10bc8c1d9bc7f7ff7deef3c2"
   port: "25565"
   subdomain: "modded"
   type: "NEOFORGE"
