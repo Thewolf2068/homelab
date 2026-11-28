@@ -8,7 +8,7 @@ mc-router:
   enabled: true
   image:
     repository: "itzg/mc-router"
-    tag: "1.47.2@sha256:64ae69eaa7a6800a79bbf962f027f4020878efa25183359115bc7f6ee569c36e"
+    tag: "1.57.1@sha256:0dd5d379e0930a912a96e12e082ff7d379f8dcef874dd9b6eae7c71387279ae2"
   watchNamespace: "game-servers"
 
 minecraft-vanilla:
